@@ -1,22 +1,30 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
-      <Grid id='landing-page' verticalAlign='middle' textAlign='center' container>
+      <div className='landing-background'>
+        <Grid container centered stackable columns={3}>
+          <Grid.Column textAlign='center'>
+            <Icon size='huge' name='user' inverted />
+            <Header as='h1' inverted>Create an Account!</Header>
+            <Header as='h3' inverted>This enables any user to register and complete a user profile.  You will be able to join focused area communities by interest(s), technical field, etc.</Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Icon size='huge' name='book' inverted />
+            <Header as='h1' inverted>Upload Research Paper!</Header>
+            <Header as='h3' inverted>For each paper, you are able to upload research papers for others to review.  You can also view and edit any previously uploaded papers.</Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Icon size='huge' name='share' inverted />
+            <Header as='h1' inverted>Get Peer Reviews!</Header>
+            <Header as='h3' inverted>Review other research papers.  Let peers review yours!</Header>
+          </Grid.Column>
 
-        <Grid.Column width={4}>
-          <Image size='small' circular src="/images/meteor-logo.png"/>
-        </Grid.Column>
-
-        <Grid.Column width={8}>
-          <h1>Welcome to this template</h1>
-          <p>Now get to work and modify this app!</p>
-        </Grid.Column>
-
-      </Grid>
+        </Grid>
+      </div>
     );
   }
 }
