@@ -6,6 +6,8 @@ class Landing extends React.Component {
   render() {
     return (
       <div className='landing-background'>
+        <Header as='h1' textAlign='center' inverted>Getting Peer Reviews is as Easy as 1-2-3! </Header>
+        <br />
         <Grid container centered stackable columns={3}>
           <Grid.Column textAlign='center'>
             <Icon size='huge' name='user' inverted />
@@ -22,7 +24,21 @@ class Landing extends React.Component {
             <Header as='h1' inverted>Get Peer Reviews!</Header>
             <Header as='h3' inverted>Review other research papers.  Let peers review yours!</Header>
           </Grid.Column>
-
+          <Header as='h1' inverted>Interested in Reviewing Papers?</Header>
+        </Grid>
+        <Grid container centered stackable columns={4}>
+          <Grid.Column textAlign='center'>
+            <Header as='h1' inverted>100 <br /> Authors</Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Header as='h1' inverted>20 <br /> Topics</Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Header as='h1' inverted>1,000 <br /> Papers</Header>
+          </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Header as='h1' inverted>50 <br /> Per Month</Header>
+          </Grid.Column>
         </Grid>
       </div>
     );
