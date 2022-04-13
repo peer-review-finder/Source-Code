@@ -45,3 +45,7 @@ Meteor.publish(null, function () {
   }
   return this.ready();
 });
+
+Meteor.publish('viewProfile', function() {
+  return this.ready();
+});
