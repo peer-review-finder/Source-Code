@@ -13,6 +13,7 @@ class PapersCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
+      title: String,
       author: String,
       abstract: String,
       area: Array,
