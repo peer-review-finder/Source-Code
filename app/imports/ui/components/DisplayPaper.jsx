@@ -25,16 +25,13 @@ class DisplayPaper extends React.Component {
             <span>{this.props.paper.author}</span>
           </Card.Meta>
           <Card.Description>
-            <Header as='h5'>Abstract</Header>
+            <Header as='h3'>Abstract<br/>{_.map(this.props.paper.area,
+              (tag, index) => <Label key={index} size='tiny' basic>{tag}</Label>)}
+            </Header>
             <div className="abstract">
               {this.props.paper.abstract}
             </div>
           </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <Header as='h5'>Area</Header>
-          {_.map(this.props.paper.area,
-            (tag, index) => <Label key={index} size='tiny' color='black'>{tag}</Label>)}
         </Card.Content>
         <Card.Content extra>
           <Header as='h5'><a href={this.props.paper.link} target="_blank" rel="noopener noreferrer">Link to Paper</a></Header>
