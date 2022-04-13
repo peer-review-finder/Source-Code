@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Header, Label, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
 
 class DisplayPaper extends React.Component {
@@ -37,7 +37,9 @@ class DisplayPaper extends React.Component {
           <Header as='h5'><a href={this.props.paper.link} target="_blank" rel="noopener noreferrer">Link to Paper</a></Header>
         </Card.Content>
         <Card.Content extra>
-          <Button basic size='tiny' onClick={this.handleClick} color='green'>Review</Button>
+          <Link to={`/view_paper/${this.props.paper._id}`}>
+            <Button basic size='tiny' color='green'>View Paper</Button>
+          </Link>
         </Card.Content>
       </Card>
     );
