@@ -29,4 +29,3 @@ if (Papers.collection.find().count() === 0) {
     Meteor.settings.defaultPaper.map(data => addPaper(data));
   }
 }
-
