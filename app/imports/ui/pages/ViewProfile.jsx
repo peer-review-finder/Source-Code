@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Header, Card, Image, Loader } from 'semantic-ui-react';
+import { Grid, Header, Card, Image, Loader, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 
 /** Renders the Page for adding a document. */
 class ViewProfile extends React.Component {
@@ -24,7 +25,14 @@ class ViewProfile extends React.Component {
                 src={this.props.user.profile.profileImage}
               />
               <Card.Header>{this.props.user.profile.name}</Card.Header>
-              <Card.Description>{this.props.user.profile.interests}</Card.Description>
+              <Card.Description>Interests: {this.props.user.profile.interests}</Card.Description>
+            </Card.Content>
+            <Card.Content>
+              <Link to='/edit_profile'>
+                <Button attached='bottom' color='green'>
+                  Edit Profile
+                </Button>
+              </Link>
             </Card.Content>
           </Card>
         </Grid.Column>
