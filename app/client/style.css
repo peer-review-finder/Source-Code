@@ -1,0 +1,15 @@
+
+.abstract {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 150px;
+}
+
+.title {
+
+}
+
+.landing-background {
+  background: url("images/books4.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
