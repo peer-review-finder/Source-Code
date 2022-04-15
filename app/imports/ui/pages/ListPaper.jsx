@@ -20,7 +20,7 @@ class ListPaper extends React.Component {
 
   onChange = e => {
     this.setState({ search: e.target.value.split(/[ ,]+/) });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {

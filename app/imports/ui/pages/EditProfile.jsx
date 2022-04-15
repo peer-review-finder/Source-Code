@@ -29,14 +29,12 @@ class EditProfile extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    Meteor.users.allow({
-      update: function () {
-        return true;
-      },
-    });
     const { profileImage, name, interests } = data;
-    Meteor.users.update({ _id: Meteor.userId() }, { $set: {
-      'profile.profileImage': profileImage, 'profile.name': name, 'profile.interests': interests } }, (error) => (error ?
+    // Meteor.users.update(Meteor.userId(), { $set: {
+    //   'profile.profileImage': profileImage, 'profile.name': name, 'profile.interests': interests } }, (error) => (error ?
+    //   swal('Error', error.message, 'error') :
+    //   swal('Success', 'Item updated successfully', 'success')));
+    Meteor.users.update(Meteor.userId(), { $set: { profile: { profileImage: profileImage, name: name, interests: interests } } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }

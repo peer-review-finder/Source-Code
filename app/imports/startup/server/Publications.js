@@ -49,3 +49,16 @@ Meteor.publish(null, function () {
 Meteor.publish('viewProfile', function () {
   return this.ready();
 });
+
+Meteor.publish('users', function () {
+  Meteor.users.allow({
+    update: function () {
+      return true;
+    },
+  });
+  return Meteor.users.find({}, {
+    fields: {
+      profile: 1,
+    },
+  });
+});
