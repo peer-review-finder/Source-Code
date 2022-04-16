@@ -3,6 +3,7 @@ import { Grid, Header, Card, Image, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import { Profiles } from '../../api/profile/Profile';
 
 /** Renders the Page for adding a document. */
 class ViewProfile extends React.Component {
@@ -21,10 +22,10 @@ class ViewProfile extends React.Component {
               <Image
                 floated='left'
                 size='big'
-                src={this.props.user.profile.profileImage}
+                src={this.props.user.profileImage}
               />
-              <Card.Header>{this.props.user.profile.name}</Card.Header>
-              <Card.Description>{this.props.user.profile.interests}</Card.Description>
+              <Card.Header>{this.props.user.name}</Card.Header>
+              <Card.Description><strong>Interests:</strong> {this.props.user.interests}</Card.Description>
             </Card.Content>
           </Card>
         </Grid.Column>
@@ -34,15 +35,20 @@ class ViewProfile extends React.Component {
 }
 
 ViewProfile.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.shape({
+    profileImage: PropTypes.string,
+    name: PropTypes.string,
+    interests: PropTypes.string,
+  }).isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('viewProfile');
+  const subscription = Meteor.subscribe(Profiles.userPublicationName);
   const ready = subscription.ready();
-  const user = Meteor.user();
+  const username = Meteor.user().username;
+  const user = Profiles.collection.findOne({ email: username });
   return {
     user,
     ready,

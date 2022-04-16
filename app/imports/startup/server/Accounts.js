@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
+import { Profiles } from '../../api/profile/Profile';
 
 /* eslint-disable no-console */
 
@@ -10,11 +11,13 @@ function createUser(email, password, role) {
     username: email,
     email: email,
     password: password,
-    profile: {
-      profileImage: '/images/default_user.png',
-      interests: 'None',
-      name: 'PRF User',
-    },
+  });
+  // create default user profile
+  Profiles.collection.insert({
+    email: email,
+    profileImage: '/images/default_user.png',
+    name: 'PRF User',
+    interests: 'None',
   });
   if (role === 'admin') {
     Roles.createRole(role, { unlessExists: true });
