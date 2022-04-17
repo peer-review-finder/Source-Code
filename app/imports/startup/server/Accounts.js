@@ -11,9 +11,9 @@ function createUser(email, password, role) {
     email: email,
     password: password,
     profile: {
-      profileImage: '/images/default_user.png',
-      interests: 'None',
-      name: 'PRF User',
+      image: '',
+      interests: [],
+      name: '',
     },
   });
   if (role === 'admin') {

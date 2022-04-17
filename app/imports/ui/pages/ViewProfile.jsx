@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Header, Card, Image, Loader } from 'semantic-ui-react';
+import { Grid, Header, Card, Image, Loader, Button, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 
 /** Renders the Page for adding a document. */
 class ViewProfile extends React.Component {
@@ -12,19 +13,24 @@ class ViewProfile extends React.Component {
   }
 
   renderPage() {
+    const image = (Meteor.user().profile.image.length > 0 ? Meteor.user().profile.image : '/images/default_user.png');
+    const name = (Meteor.user().profile.name.length > 0 ? Meteor.user().profile.name : 'No name provided');
     return (
       <Grid container centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">Profile</Header>
           <Card centered>
+            <Image src={image} wrapped ui={false} />
             <Card.Content>
-              <Image
-                floated='left'
-                size='big'
-                src={this.props.user.profile.profileImage}
-              />
-              <Card.Header>{this.props.user.profile.name}</Card.Header>
-              <Card.Description>{this.props.user.profile.interests}</Card.Description>
+              <Card.Header>{name}</Card.Header>
+              <Card.Description>
+                {Meteor.user().profile.interests.map((interest, index) => <Label basic key={index}>{interest}</Label>)}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Link to='/edit_profile'>
+                <Button color='green'>Edit Profile</Button>
+              </Link>
             </Card.Content>
           </Card>
         </Grid.Column>
@@ -34,17 +40,13 @@ class ViewProfile extends React.Component {
 }
 
 ViewProfile.propTypes = {
-  user: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('viewProfile');
-  const ready = subscription.ready();
-  const user = Meteor.user();
+  const ready = Meteor.user() !== undefined;
   return {
-    user,
     ready,
   };
 })(ViewProfile);
