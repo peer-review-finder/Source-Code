@@ -49,15 +49,15 @@ class AddPaper extends React.Component {
     }
     return (
       <Container style={menuStyle} textAlign='center'>
-        <Header as='h1'>Uploading Paper</Header>
+        <Header as='h1' inverted>Uploading Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
-            <Form.Group widths={'equal'}>
-              <TextField name='title' placeholder='AI' label='Paper Title'/>
+            <TextField name='title' placeholder='AI' label='Paper Title'/>
+            <Form.Group widths='equal'>
               <AutoField name='authors' label='Authors'/>
             </Form.Group>
-            <Form.Group widths={'equal'}>
-              <LongTextField name='abstract' placeholder='Paper is about' label='Abstract'/>
+            <LongTextField name='abstract' placeholder='Paper is about' label='Abstract'/>
+            <Form.Group widths='equal'>
               <AutoField name='area' label='Area of Study'/>
             </Form.Group>
             <Form.Group widths='equal'>
