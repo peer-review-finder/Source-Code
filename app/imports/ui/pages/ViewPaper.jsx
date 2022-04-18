@@ -20,7 +20,7 @@ class ViewPaper extends React.Component {
         <Card fluid>
           <Card.Content>
             <Card.Header>{this.props.paper.title}</Card.Header>
-            <Card.Meta>{this.props.paper.author}</Card.Meta>
+            <Card.Meta>{this.props.paper.authors.map((author) => `${author}, `)}</Card.Meta>
             <Card.Description>
               {this.props.paper.area.map((area, index) => <Label basic key={index}>{area}</Label>)}
             </Card.Description>
@@ -43,7 +43,7 @@ class ViewPaper extends React.Component {
 ViewPaper.propTypes = {
   paper: PropTypes.shape({
     title: PropTypes.string,
-    author: PropTypes.string,
+    authors: PropTypes.arrayOf(PropTypes.string),
     abstract: PropTypes.string,
     area: PropTypes.arrayOf(PropTypes.string),
     link: PropTypes.string,
