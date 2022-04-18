@@ -25,8 +25,8 @@ class DisplayPaper extends React.Component {
             <span>{_.map(this.props.paper.authors, (name) => `${name}, `)}</span>
           </Card.Meta>
           <Card.Description>
-            <Header as='h3'>Abstract<br/>{_.map(this.props.paper.area,
-              (tag, index) => <Label key={index} size='tiny' basic>{tag}</Label>)}
+            <Header as='h3'>{_.map(this.props.paper.area,
+              (tag, index) => <Label key={index} size='tiny' basic>{tag}</Label>)}<br/><br/> Abstract
             </Header>
             <div className="abstract">
               {this.props.paper.abstract}
