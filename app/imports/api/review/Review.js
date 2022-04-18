@@ -3,25 +3,19 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /**
- * The PapersCollection. It encapsulates state and variable values for a paper.
+ * The ReviewsCollection. It encapsulates state and variable values for a review.
  */
-class PapersCollection {
+class ReviewsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'PapersCollection';
+    this.name = 'ReviewsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      title: String,
-      author: String,
-      abstract: String,
-      area: Array,
-      'area.$': {
-        type: String,
-      },
-      link: String,
       owner: String,
+      message: String,
+      timestamp: Date,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -32,7 +26,7 @@ class PapersCollection {
 }
 
 /**
- * The singleton instance of the PapersCollection.
- * @type {PapersCollection}
+ * The singleton instance of the ReviewsCollection.
+ * @type {ReviewsCollection}
  */
-export const Papers = new PapersCollection();
+export const Reviews = new ReviewsCollection();
