@@ -24,8 +24,8 @@ Meteor.publish(Papers.userPublicationName, function () {
 
 Meteor.publish(Reviews.userPublicationName, function () {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Stuffs.collection.find({ owner: username });
+    // need to give users read access if they are not the owner of the review
+    return Reviews.collection.find();
   }
   return this.ready();
 });
