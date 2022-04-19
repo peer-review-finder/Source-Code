@@ -11,7 +11,7 @@ function addData(data) {
 }
 
 function addPaper(data) {
-  console.log(`  Adding: ${data.author} (${data.owner})`);
+  console.log(`  Adding: ${data.authors} (${data.owner})`);
   Papers.collection.insert(data);
 }
 

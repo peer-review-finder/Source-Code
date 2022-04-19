@@ -65,3 +65,11 @@ Meteor.publish(null, function () {
 Meteor.publish('viewProfile', function () {
   return this.ready();
 });
+
+Meteor.publish(Stuffs.eslintTest, function () {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Stuffs.collection.find({ owner: username });
+  }
+  return this.ready();
+});

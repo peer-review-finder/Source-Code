@@ -26,8 +26,8 @@ class AddPaper extends React.Component {
   }
 
   submit(data) {
-    const { owner, title, author, abstract, area, link } = data;
-    Papers.collection.insert({ owner, title, author, abstract, area, link },
+    const { owner, title, authors, abstract, area, link } = data;
+    Papers.collection.insert({ owner, title, authors, abstract, area, link },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -52,12 +52,12 @@ class AddPaper extends React.Component {
         <Header as='h1'>Uploading Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
-            <Form.Group widths={'equal'}>
-              <TextField name='title' placeholder='AI' label='Paper Title'/>
-              <TextField name='author' placeholder='John' label='Author'/>
+            <TextField name='title' placeholder='AI' label='Paper Title'/>
+            <Form.Group widths='equal'>
+              <AutoField name='authors' label='Authors'/>
             </Form.Group>
-            <Form.Group widths={'equal'}>
-              <LongTextField name='abstract' placeholder='Papers is about' label='Abstract'/>
+            <LongTextField name='abstract' placeholder='Paper is about' label='Abstract'/>
+            <Form.Group widths='equal'>
               <AutoField name='area' label='Area of Study'/>
             </Form.Group>
             <Form.Group widths='equal'>
