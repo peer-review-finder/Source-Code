@@ -22,7 +22,7 @@ class DisplayPaper extends React.Component {
         <Card.Content>
           <Card.Header className="title">{this.props.paper.title}</Card.Header>
           <Card.Meta>
-            <span><br/>{_.map(this.props.paper.authors, (name) => `${name}, `)}</span>
+            <span>{_.map(this.props.paper.authors, (name) => `${name}, `)}</span>
           </Card.Meta>
           <Card.Description>
             <Header as='h3'><br/>{_.map(this.props.paper.area,

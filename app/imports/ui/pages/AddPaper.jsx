@@ -49,7 +49,7 @@ class AddPaper extends React.Component {
     }
     return (
       <Container style={menuStyle} textAlign='center'>
-        <Header as='h1' inverted>Uploading Paper</Header>
+        <Header as='h1'>Uploading Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
             <TextField name='title' placeholder='AI' label='Paper Title'/>
