@@ -14,7 +14,10 @@ class PapersCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       title: String,
-      author: String,
+      author: { label: 'author', type: Array },
+      'author.$': {
+        type: String,
+      },
       abstract: String,
       area: Array,
       'area.$': {
