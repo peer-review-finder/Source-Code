@@ -18,7 +18,7 @@ class DisplayPaper extends React.Component {
 
   render() {
     return (
-      <Card color='green'>
+      <Card color='yellow'>
         <Card.Content>
           <Card.Header className="title">{this.props.paper.title}</Card.Header>
           <Card.Meta>
