@@ -28,32 +28,11 @@ class ListPaper extends React.Component {
   }
 
   renderPage() {
-    // eslint-disable-next-line no-unused-vars
-    const sortOptions = [
-      {
-        key: 'All',
-        text: 'All',
-        value: 'All',
-      },
-      {
-        key: 'Conference',
-        text: 'Conference',
-        value: 'Conference',
-      },
-      {
-        key: 'Essay',
-        text: 'Essay',
-        value: 'Essay',
-      },
-      {
-        key: 'Journal',
-        text: 'Journal',
-        value: 'Journal',
-      },
-    ];
+    const menuStyle = { marginTop: '40px' };
     const { search } = this.state;
     // const currentUser = Meteor.user().username;
     let otherPapers = this.props.paper;
+    // otherPapers = _.reject(otherPapers, function (papers) { return papers.owner === currentUser; });// filter out paper created by you
     if (search.length > 1) {
       otherPapers = _.filter(otherPapers, function (papers) {
         return _.find(search, function (searches) {
@@ -62,12 +41,10 @@ class ListPaper extends React.Component {
         });
       });
     }
-    // otherPapers = _.reject(otherPapers, function (papers) { return papers.owner === currentUser; }); // filter out paper created by you
-    // <Dropdown selection defaultValue={sortOptions[0].value} options={sortOptions}/>
     return (
-      <Container>
+      <Container style={menuStyle}>
         <Container fluid>
-          <Header as="h1" textAlign="center">Paper Looking for Reviews</Header>
+          <Header as="h1" textAlign="center" inverted>Paper Looking for Reviews</Header>
           <Input fluid icon="search" placeholder="Search paper by area of study separated by space or comma..." onChange={this.onChange}/>
           <br/>
           <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>

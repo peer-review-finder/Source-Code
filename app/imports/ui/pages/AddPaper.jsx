@@ -35,7 +35,7 @@ class AddPaper extends React.Component {
           swal('Success', 'Paper Uploaded successfully', 'success');
           this.setState({ redirectToReferer: true });
         }
-      });
+      });// .then(function() { <Redirect to='/listPaper'/> });
   }
 
   render() {
