@@ -29,7 +29,7 @@ class ViewProfile extends React.Component {
             </Card.Content>
             <Card.Content extra>
               <Link to='/edit_profile'>
-                <Button color='green'>Edit Profile</Button>
+                <Button color='green' fluid>Edit Profile</Button>
               </Link>
             </Card.Content>
           </Card>
