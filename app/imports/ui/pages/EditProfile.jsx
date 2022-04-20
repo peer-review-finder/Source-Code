@@ -56,15 +56,15 @@ class EditProfile extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
+      <Grid container centered id="editprofile-page">
         <Grid.Column>
           <Header as="h2" textAlign="center">Edit Profile</Header>
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={Meteor.user().profile}>
             <Segment>
-              <TextField name='name'/>
-              <TextField name='image'/>
-              <ListField name='interests'/>
-              <SubmitField value='Submit'/>
+              <TextField name='name' id='edit_name'/>
+              <TextField name='image' id='edit_image'/>
+              <ListField name='interests' id='edit_interests'/>
+              <SubmitField value='Submit' id='edit_submit'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>

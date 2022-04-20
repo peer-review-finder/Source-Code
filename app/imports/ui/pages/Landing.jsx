@@ -5,7 +5,7 @@ import { Grid, Header, Icon } from 'semantic-ui-react';
 class Landing extends React.Component {
   render() {
     return (
-      <div className='landing-background'>
+      <div className='landing-background' id='landing-page'>
         <Header as='h1' textAlign='center' inverted>Getting Peer Reviews is as Easy as 1-2-3! </Header>
         <br />
         <Grid container centered stackable columns={3}>
