@@ -23,6 +23,13 @@ class NavBar {
     await testController.expect(loggedInUser).eql(username);
   }
 
+  /** Check that someone is logged in, then click view profile */
+  async viewProfile(testController) {
+    await testController.expect(Selector('#navbar-current-user').exists).ok();
+    await testController.click('#navbar-current-user');
+    await testController.click('#view-profile');
+  }
+
   /** Check that someone is logged in, then click items to logout. */
   async logout(testController) {
     await testController.expect(Selector('#navbar-current-user').exists).ok();
