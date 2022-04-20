@@ -30,4 +30,6 @@ test('Test that signup works', async (testController) => {
   await navBar.gotoSignupPage(testController);
   await signupPage.signupUser(testController, new_cred.username, new_cred.password);
   await navBar.isLoggedIn(testController, new_cred.username);
+  await navBar.logout(testController);
+  await signoutPage.isDisplayed(testController);
 });
