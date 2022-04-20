@@ -74,7 +74,7 @@ class ListPaper extends React.Component {
         </Container>
         <br/>
         <CardGroup itemsPerRow={4}>
-          {otherPapers.map((papers, index) => <DisplayPaper key={index} paper={papers} />)}
+          {otherPapers.map((papers) => <DisplayPaper key={papers._id} paper={papers} />)}
         </CardGroup>
         <br/><br/><br/><br/>
       </Container>

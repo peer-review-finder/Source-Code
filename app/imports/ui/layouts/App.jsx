@@ -11,6 +11,7 @@ import ListPaper from '../pages/ListPaper';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddPaper from '../pages/AddPaper';
 import EditStuff from '../pages/EditStuff';
+import EditPaper from '../pages/EditPaper';
 import ViewPaper from '../pages/ViewPaper';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -34,6 +35,7 @@ class App extends React.Component {
             <ProtectedRoute path="/profile" component={ViewProfile}/>
             <ProtectedRoute path="/edit_profile" component={EditProfile}/>
             <ProtectedRoute path="/listPaper" component={ListPaper}/>
+            <ProtectedRoute path="/editPaper/:_id" component={EditPaper}/>
             <ProtectedRoute path="/addPaper" component={AddPaper}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
