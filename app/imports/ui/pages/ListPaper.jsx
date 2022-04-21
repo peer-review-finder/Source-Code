@@ -42,7 +42,7 @@ class ListPaper extends React.Component {
       });
     }
     return (
-      <Container style={menuStyle}>
+      <Container style={menuStyle} id="list-papers-page">
         <Container fluid>
           <Header as="h1" textAlign="center" inverted>Paper Looking for Reviews</Header>
           <Input fluid icon="search" placeholder="Search paper by area of study separated by space or comma..." onChange={this.onChange}/>

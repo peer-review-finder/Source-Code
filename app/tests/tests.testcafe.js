@@ -5,6 +5,8 @@ import { navBar } from './navbar.component';
 import { signupPage } from './signup.page';
 import { viewprofilePage } from './viewprofile.page';
 import { editprofilePage } from './editprofile.page';
+import { listPapersPage } from './listPapers.page';
+import { viewPaperPage } from './viewPaper.page';
 
 /* global fixture:false, test:false */
 
@@ -56,4 +58,30 @@ test('Test that view and edit profile work', async (testController) => {
   await editprofilePage.editProfile(testController, edit_user.name, edit_user.image, edit_user.interest);
   await navBar.viewProfile(testController);
   await viewprofilePage.checkProfile(testController, edit_user.name, edit_user.image, edit_user.interest);
+});
+
+test('Test that list papers page works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.isLoggedIn(testController, credentials.username);
+  await navBar.gotoListPapersPage(testController);
+  await listPapersPage.hasListing(testController);
+});
+
+test('Test that view paper page works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.isLoggedIn(testController, credentials.username);
+  await navBar.gotoListPapersPage(testController);
+  await listPapersPage.gotoViewPapersPage(testController);
+  await viewPaperPage.isDisplayed(testController);
+});
+
+test('Test that add review works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, new_cred.username, new_cred.password);
+  await navBar.isLoggedIn(testController, new_cred.username);
+  await navBar.gotoListPapersPage(testController);
+  await listPapersPage.gotoViewPapersPage(testController);
+  await viewPaperPage.addReview(testController);
 });

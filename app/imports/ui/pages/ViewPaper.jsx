@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Papers } from '../../api/paper/Paper';
+import { Reviews } from '../../api/review/Review';
+import AddReview from '../components/AddReview';
 
 /** Renders the Page for viewing a single paper. */
 class ViewPaper extends React.Component {
@@ -15,8 +17,16 @@ class ViewPaper extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    let addReview = <div />;
+    if (this.props.paper.owner !== Meteor.user().username) {
+      addReview = (
+        <Card.Content>
+          <AddReview paper={this.props.paper} reviews={this.props.reviews}/>
+        </Card.Content>
+      );
+    }
     return (
-      <Container>
+      <Container id="view-paper-page">
         <Card fluid>
           <Card.Content>
             <Card.Header>{this.props.paper.title}</Card.Header>
@@ -31,8 +41,8 @@ class ViewPaper extends React.Component {
           </Card.Content>
           <Card.Content extra>
             <Button color='blue' as='a' href={this.props.paper.link}>Download Full Paper</Button>
-            <Button color='green' disabled>Review Paper - Coming Soon</Button>
           </Card.Content>
+          {addReview}
         </Card>
       </Container>
     );
@@ -50,6 +60,7 @@ ViewPaper.propTypes = {
     owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
+  reviews: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -57,14 +68,17 @@ ViewPaper.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Paper documents.
+  // Get access to Paper and Review documents.
   const subscription = Meteor.subscribe(Papers.userPublicationName);
+  const subscription2 = Meteor.subscribe(Reviews.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the document
+  const ready = subscription.ready() && subscription2.ready();
+  // Get the documents
   const paper = Papers.collection.findOne(documentId);
+  const reviews = Reviews.collection.find({ paperId: match.params._id }).fetch();
   return {
     paper,
+    reviews,
     ready,
   };
 })(ViewPaper);

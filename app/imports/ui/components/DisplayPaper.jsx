@@ -38,7 +38,7 @@ class DisplayPaper extends React.Component {
         </Card.Content>
         <Card.Content extra>
           <Link to={`/view_paper/${this.props.paper._id}`}>
-            <Button basic size='tiny' color='green'>View Paper</Button>
+            <Button className="view-paper-button" basic size='tiny' color='green'>View Paper</Button>
           </Link>
           <Link to={`/editPaper/${this.props.paper._id}`}>
             <Button basic size='tiny' color='green'>Edit Paper</Button>
