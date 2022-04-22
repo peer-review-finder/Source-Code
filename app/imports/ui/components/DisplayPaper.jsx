@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Header, Label, Button } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
@@ -17,6 +18,7 @@ class DisplayPaper extends React.Component {
   }
 
   render() {
+    const currentUser = Meteor.user() ? Meteor.user().username : '';
     return (
       <Card color='yellow'>
         <Card.Content>
@@ -40,9 +42,10 @@ class DisplayPaper extends React.Component {
           <Link to={`/view_paper/${this.props.paper._id}`}>
             <Button className="view-paper-button" basic size='tiny' color='green'>View Paper</Button>
           </Link>
-          <Link to={`/editPaper/${this.props.paper._id}`}>
-            <Button basic size='tiny' color='green'>Edit Paper</Button>
-          </Link>
+          { currentUser === this.props.paper.owner ?
+            <Link to={`/editPaper/${this.props.paper._id}`}>
+              <Button basic size='tiny' color='green'>Edit Paper</Button>
+            </Link> : '' }
         </Card.Content>
       </Card>
     );
