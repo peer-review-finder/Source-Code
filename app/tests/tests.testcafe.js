@@ -7,6 +7,7 @@ import { viewprofilePage } from './viewprofile.page';
 import { editprofilePage } from './editprofile.page';
 import { listPapersPage } from './listPapers.page';
 import { viewPaperPage } from './viewPaper.page';
+import { listReviewPage } from './listReview.page';
 
 /* global fixture:false, test:false */
 
@@ -84,4 +85,14 @@ test('Test that add review works', async (testController) => {
   await navBar.gotoListPapersPage(testController);
   await listPapersPage.gotoViewPapersPage(testController);
   await viewPaperPage.addReview(testController);
+});
+
+test('Test that list review works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, new_cred.username, new_cred.password);
+  await navBar.isLoggedIn(testController, new_cred.username);
+  await navBar.gotoListReviewPage(testController);
+  await listReviewPage.isDisplayed(testController);
+  await listReviewPage.hasListing(testController);
+  await listReviewPage.deletePaper(testController);
 });

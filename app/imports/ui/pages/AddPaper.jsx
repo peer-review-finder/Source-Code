@@ -45,7 +45,7 @@ class AddPaper extends React.Component {
   renderPage() {
     const menuStyle = { marginTop: '100px' };
     if (this.state.redirectToReferer) {
-      return <Redirect to='/listPaper'/>;
+      return <Redirect to='/listReview'/>;
     }
     return (
       <Container style={menuStyle} textAlign='center'>
