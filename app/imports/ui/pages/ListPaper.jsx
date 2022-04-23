@@ -30,9 +30,9 @@ class ListPaper extends React.Component {
   renderPage() {
     const menuStyle = { marginTop: '40px' };
     const { search } = this.state;
-    // const currentUser = Meteor.user().username;
+    const currentUser = Meteor.user().username;
     let otherPapers = this.props.paper;
-    // otherPapers = _.reject(otherPapers, function (papers) { return papers.owner === currentUser; });// filter out paper created by you
+    otherPapers = _.reject(otherPapers, function (papers) { return papers.owner === currentUser; });// filter out paper created by you
     if (search.length > 1) {
       otherPapers = _.filter(otherPapers, function (papers) {
         return _.find(search, function (searches) {

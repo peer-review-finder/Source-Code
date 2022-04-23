@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
+import { Papers } from '../../api/paper/Paper';
 
 class DisplayPaper extends React.Component {
   constructor(props) {
@@ -12,9 +13,8 @@ class DisplayPaper extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    // const _id = this.props.paper._id;
-    // const reviewer = Meteor.user().username;
+  handleClick(id) {
+    Papers.collection.remove(id);
   }
 
   render() {
@@ -40,12 +40,14 @@ class DisplayPaper extends React.Component {
         </Card.Content>
         <Card.Content extra>
           <Link to={`/view_paper/${this.props.paper._id}`}>
-            <Button className="view-paper-button" basic size='tiny' color='green'>View Paper</Button>
+            <Button fluid className="view-paper-button" basic size='tiny' color='green'>View Paper</Button>
           </Link>
-          { currentUser === this.props.paper.owner ?
-            <Link to={`/editPaper/${this.props.paper._id}`}>
-              <Button basic size='tiny' color='green'>Edit Paper</Button>
-            </Link> : '' }
+          { currentUser === this.props.paper.owner ? (
+            <Card.Content fluid>
+              <Link fluid to={`/editPaper/${this.props.paper._id}`}><Button basic size='tiny' color='green'>Edit Paper </Button></Link>
+              <Button id="delete-paper-button" basic size='tiny' color='red' onClick={() => this.handleClick(this.props.paper._id)}>Delete Paper</Button>
+            </Card.Content>
+          ) : '' }
         </Card.Content>
       </Card>
     );

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Table, Loader } from 'semantic-ui-react';
+import { Container, Header, Table, Loader, Icon, Button, CardGroup } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Reviews } from '../../api/review/Review';
 import ReviewItem from '../components/ReviewItem';
 import { Papers } from '../../api/paper/Paper';
+import DisplayPaper from '../components/DisplayPaper';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListReview extends React.Component {
@@ -17,9 +19,17 @@ class ListReview extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const currentUser = Meteor.user().username;
+    const myPapers = this.props.paper.filter(papers => (papers.owner) === currentUser);
     return (
       <Container id='list-reviews-page'>
-        <Header as="h2" textAlign="center">Your reviews</Header>
+        <Header as="h2" textAlign="center">Your Reviews and Papers</Header>
+        <br/>
+        <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>
+        <CardGroup itemsPerRow={4}>
+          {myPapers.map((paper) => <DisplayPaper key={paper._id} paper={paper} />)}
+        </CardGroup>
+        <br/><br/><br/><br/>
         <Table celled>
           <Table.Header>
             <Table.Row>
@@ -42,6 +52,7 @@ ListReview.propTypes = {
     message: PropTypes.string,
     paperId: PropTypes.string,
   })).isRequired,
+  paper: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -54,11 +65,14 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready();
   // Get the documents
+  const paper = Papers.collection.find({}).fetch();
+
   // const paper = Papers.collection.find({}).fetch();
   const currentUser = Meteor.user() ? Meteor.user().username : '';
   const review = Reviews.collection.find({ owner: currentUser }).fetch();
   return {
     review,
+    paper,
     ready,
   };
 })(ListReview);
