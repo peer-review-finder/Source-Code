@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
 import AddReview from '../components/AddReview';
+import EditReview from '../components/EditReview';
 
 /** Renders the Page for viewing a single paper. */
 class ViewPaper extends React.Component {
@@ -19,11 +20,20 @@ class ViewPaper extends React.Component {
   renderPage() {
     let addReview = <div />;
     if (this.props.paper.owner !== Meteor.user().username) {
-      addReview = (
-        <Card.Content>
-          <AddReview paper={this.props.paper} reviews={this.props.reviews}/>
-        </Card.Content>
-      );
+      const reviews = this.props.reviews.filter(review => (review.owner === Meteor.user().username));
+      if (reviews.length === 0) {
+        addReview = (
+          <Card.Content>
+            <AddReview paper={this.props.paper} reviews={this.props.reviews}/>
+          </Card.Content>
+        );
+      } else {
+        addReview = (
+          <Card.Content>
+            <EditReview paper={this.props.paper} reviews={this.props.reviews}/>
+          </Card.Content>
+        );
+      }
     }
     return (
       <Container id="view-paper-page">

@@ -1,4 +1,3 @@
-
 .abstract {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -12,4 +11,19 @@
 .landing-background {
   background: url("images/books4.jpeg") no-repeat center center fixed;
   background-size: cover;
+}
+
+#add-review-form-submit, #edit_submit, #navbar_top {
+  background-color: #21BA45;
+  color: white;
+}
+
+#footer_bottom {
+  background-color: #21BA45;
+  color: white;
+  margin-top: 20px;
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
 }
