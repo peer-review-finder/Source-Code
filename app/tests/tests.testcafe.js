@@ -93,6 +93,4 @@ test('Test that list review works', async (testController) => {
   await navBar.isLoggedIn(testController, new_cred.username);
   await navBar.gotoListReviewPage(testController);
   await listReviewPage.isDisplayed(testController);
-  await listReviewPage.hasListing(testController);
-  await listReviewPage.deletePaper(testController);
 });
