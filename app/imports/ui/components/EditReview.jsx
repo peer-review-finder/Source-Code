@@ -56,8 +56,8 @@ class EditReview extends React.Component {
       return (
         <Segment id="submitted-review">
           <Header as="h2">Your Submitted Review</Header>
-          <p>{reviews[0].message}</p>
-          <Button color='green' onClick={this.handleClick}>Edit Review</Button>
+          <p id='review-text'>{reviews[0].message}</p>
+          <Button color='green' onClick={this.handleClick} id='edit_review_btn'>Edit Review</Button>
         </Segment>
       );
     }

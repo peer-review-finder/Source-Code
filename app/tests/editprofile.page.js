@@ -18,7 +18,8 @@ class EditProfilePage {
     await testController.click('.ui .add.icon');
     await testController.typeText('#edit_interests', interest);
     await testController.click('#edit_submit');
-    await testController.click('.swal-button.swal-button--confirm');
+    await testController.click('.swal-button--confirm');
+    await testController.expect(Selector('#viewprofile-page').exists).ok();
   }
 }
 
