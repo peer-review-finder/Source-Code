@@ -25,10 +25,11 @@ class EditReview extends React.Component {
 
   // On submit, insert the data.
   submit(data) {
+    const reviews = this.props.reviews.filter(review => (review.owner === Meteor.user().username));
     const { message } = data;
     const timestamp = new Date();
     // console.log(paperId);
-    Reviews.collection.update(this.props.reviews[0]._id, {
+    Reviews.collection.update(reviews[0]._id, {
       $set: {
         message: message,
         timestamp: timestamp,
@@ -63,7 +64,7 @@ class EditReview extends React.Component {
     }
     return (
       <Segment id="edit-review-form">
-        <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.reviews[0]}>
+        <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={reviews[0]}>
           <Header as="h2">Edit a Review</Header>
           <LongTextField label="Review" name="message" id="edit-review-form-message"/>
           <SubmitField value="Submit" id="edit-review-form-submit"/>

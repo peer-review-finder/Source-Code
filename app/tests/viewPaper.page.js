@@ -33,7 +33,7 @@ class ViewPaperPage {
     await testController.expect(Selector('.swal-modal').exists).ok();
     await testController.click('.swal-button--confirm');
     await testController.expect(Selector('#submitted-review').exists).ok();
-    const edited_review = Selector('#review_text').innerText;
+    const edited_review = await Selector('#review-text').innerText;
     await testController.expect(edited_review).eql('edited test message');
   }
 }
