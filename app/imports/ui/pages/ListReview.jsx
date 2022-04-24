@@ -19,17 +19,18 @@ class ListReview extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const menuStyle = { marginTop: '25px' };
     const currentUser = Meteor.user().username;
     const myPapers = this.props.paper.filter(papers => (papers.owner) === currentUser);
     return (
-      <Container id='list-reviews-page'>
+      <Container style={menuStyle} id='list-reviews-page'>
         <Header as="h2" textAlign="center">Your Reviews and Papers</Header>
         <br/>
         <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>
         <CardGroup itemsPerRow={4}>
           {myPapers.map((paper) => <DisplayPaper key={paper._id} paper={paper} />)}
         </CardGroup>
-        <br/><br/><br/><br/>
+        <br/><br/>
         <Table celled>
           <Table.Header>
             <Table.Row>
@@ -41,6 +42,7 @@ class ListReview extends React.Component {
             {this.props.review.map((reviews) => <ReviewItem key={reviews.paperId} title={Papers.collection.findOne(reviews.paperId).title} message={reviews.message}/>)}
           </Table.Body>
         </Table>
+        <br/><br/>
       </Container>
     );
   }

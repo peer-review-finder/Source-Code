@@ -43,7 +43,7 @@ class AddPaper extends React.Component {
   }
 
   renderPage() {
-    const menuStyle = { marginTop: '100px' };
+    const menuStyle = { marginTop: '25px' };
     if (this.state.redirectToReferer) {
       return <Redirect to='/listReview'/>;
     }

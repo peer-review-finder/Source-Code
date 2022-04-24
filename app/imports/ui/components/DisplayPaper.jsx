@@ -20,7 +20,7 @@ class DisplayPaper extends React.Component {
   render() {
     const currentUser = Meteor.user() ? Meteor.user().username : '';
     return (
-      <Card color='yellow'>
+      <Card color='green'>
         <Card.Content>
           <Card.Header className="title">{this.props.paper.title}</Card.Header>
           <Card.Meta>

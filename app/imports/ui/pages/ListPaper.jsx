@@ -28,7 +28,7 @@ class ListPaper extends React.Component {
   }
 
   renderPage() {
-    const menuStyle = { marginTop: '40px' };
+    const menuStyle = { marginTop: '25px' };
     const { search } = this.state;
     const currentUser = Meteor.user().username;
     let otherPapers = this.props.paper;
@@ -44,7 +44,7 @@ class ListPaper extends React.Component {
     return (
       <Container style={menuStyle} id="list-papers-page">
         <Container fluid>
-          <Header as="h1" textAlign="center" inverted>Paper Looking for Reviews</Header>
+          <Header as="h1" textAlign="center">Paper Looking for Reviews</Header>
           <Input fluid icon="search" placeholder="Search paper by area of study separated by space or comma..." onChange={this.onChange}/>
           <br/>
           <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>

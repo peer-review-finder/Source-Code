@@ -11,9 +11,10 @@
 .landing-background {
   background: url("images/books4.jpeg") no-repeat center center fixed;
   background-size: cover;
+  height: 77vh;
 }
 
-#add-review-form-submit, #edit_submit, #navbar_top {
+#add-review-form-submit, #edit-review-form-submit, #edit_submit, #navbar_top {
   background-color: #21BA45;
   color: white;
 }
@@ -22,8 +23,14 @@
   background-color: #21BA45;
   color: white;
   margin-top: 20px;
-  /*position: fixed;*/
-  /*bottom: 0;*/
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
   /*left: 0;*/
-  /*width: 100%;*/
+  width: 100%;
+  z-index: 7000;
+}
+
+#switch_body {
+  padding-bottom: 100px;
 }

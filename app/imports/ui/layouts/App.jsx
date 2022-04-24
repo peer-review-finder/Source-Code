@@ -28,22 +28,24 @@ class App extends React.Component {
       <Router>
         <div>
           <NavBar/>
-          <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route path="/signin" component={Signin}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/profile" component={ViewProfile}/>
-            <ProtectedRoute path="/edit_profile" component={EditProfile}/>
-            <ProtectedRoute path="/listPaper" component={ListPaper}/>
-            <ProtectedRoute path="/listReview" component={ListReview}/>
-            <ProtectedRoute path="/editPaper/:_id" component={EditPaper}/>
-            <ProtectedRoute path="/addPaper" component={AddPaper}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-            <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
-            <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
-            <Route component={NotFound}/>
-          </Switch>
+          <div id="switch_body">
+            <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
+              <Route path="/signup" component={Signup}/>
+              <Route path="/signout" component={Signout}/>
+              <ProtectedRoute path="/profile" component={ViewProfile}/>
+              <ProtectedRoute path="/edit_profile" component={EditProfile}/>
+              <ProtectedRoute path="/listPaper" component={ListPaper}/>
+              <ProtectedRoute path="/listReview" component={ListReview}/>
+              <ProtectedRoute path="/editPaper/:_id" component={EditPaper}/>
+              <ProtectedRoute path="/addPaper" component={AddPaper}/>
+              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+              <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
+              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
           <Footer/>
         </div>
       </Router>

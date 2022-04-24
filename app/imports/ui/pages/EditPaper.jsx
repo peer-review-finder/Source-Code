@@ -29,7 +29,7 @@ class EditPaper extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
-    const menuStyle = { marginTop: '100px' };
+    const menuStyle = { marginTop: '25px' };
     return (
       <Container style={menuStyle} textAlign='center'>
         <Header as='h1'>Edit Paper</Header>
