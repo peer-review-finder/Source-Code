@@ -11,7 +11,7 @@
 .landing-background {
   background: url("images/books4.jpeg") no-repeat center center fixed;
   background-size: cover;
-  height: 77vh;
+  height: 590px;
 }
 
 #add-review-form-submit, #edit-review-form-submit, #edit_submit, #navbar_top {

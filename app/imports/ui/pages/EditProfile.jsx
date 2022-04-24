@@ -43,9 +43,16 @@ class EditProfile extends React.Component {
           interests: interests,
         },
       },
-    }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+    }, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Profile updated successfully', 'success').then(function () {
+          // reload page after user clicks OK
+          window.location.href = '/#/profile'; // eslint-disable-line
+        });
+      }
+    });
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
