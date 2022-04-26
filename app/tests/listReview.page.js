@@ -26,7 +26,7 @@ class ListReviewPage {
   async deletePaper(testController) {
     await this.isDisplayed(testController);
     await testController.click('#delete-paper-button');
-    await testController.click('.swal-button.swal-button--confirm');
+    await testController.expect(Selector('.ui .card').count).gte(1);
   }
 }
 
