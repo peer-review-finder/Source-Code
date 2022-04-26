@@ -11,7 +11,7 @@ class ListReviewPage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
-  /** Go to the view paper page for the first */
+  /** check if there more than one card */
   async hasListing(testController) {
     await this.isDisplayed(testController);
     await testController.expect(Selector('.ui .card').count).gte(1);
@@ -26,7 +26,7 @@ class ListReviewPage {
   async deletePaper(testController) {
     await this.isDisplayed(testController);
     await testController.click('#delete-paper-button');
-    await testController.expect(Selector('.ui .card').count).gte(1);
+    await testController.expect(Selector('.ui .card').count).lte(1);
   }
 }
 

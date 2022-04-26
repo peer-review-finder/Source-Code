@@ -78,6 +78,16 @@ test('Test that view paper page works', async (testController) => {
   await viewPaperPage.isDisplayed(testController);
 });
 
+test('Test that list review works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.isLoggedIn(testController, credentials.username);
+  await navBar.gotoListReviewPage(testController);
+  await listReviewPage.isDisplayed(testController);
+  await listReviewPage.hasListing(testController);
+  await listReviewPage.deletePaper(testController);
+});
+
 test('Test that add review and edit review works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, new_cred.username, new_cred.password);
@@ -86,14 +96,4 @@ test('Test that add review and edit review works', async (testController) => {
   await listPapersPage.gotoViewPapersPage(testController);
   await viewPaperPage.addReview(testController);
   await viewPaperPage.editReview(testController);
-});
-
-test('Test that list review works', async (testController) => {
-  await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, new_cred.username, new_cred.password);
-  await navBar.isLoggedIn(testController, new_cred.username);
-  await navBar.gotoListReviewPage(testController);
-  await listReviewPage.isDisplayed(testController);
-  await listReviewPage.hasListing();
-  await listReviewPage.deletePaper();
 });
