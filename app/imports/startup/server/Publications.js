@@ -15,7 +15,10 @@ Meteor.publish(Stuffs.userPublicationName, function () {
 });
 
 Meteor.publish(Papers.userPublicationName, function () {
-  return Papers.collection.find();
+  if (this.userId) {
+    return Papers.collection.find();
+  }
+  return this.ready();
 });
 
 Meteor.publish(Reviews.userPublicationName, function () {
