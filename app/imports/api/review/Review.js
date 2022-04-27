@@ -17,6 +17,10 @@ class ReviewsCollection {
       owner: String,
       message: String,
       timestamp: Date,
+      rating: {
+        optional: true,
+        type: Number,
+      },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);

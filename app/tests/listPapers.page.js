@@ -18,7 +18,7 @@ class ListPapersPage {
   }
 
   /** Go to the view paper page for the first paper */
-  async gotoViewPapersPage(testController) {
+  async gotoViewPaperPage(testController) {
     await this.isDisplayed(testController);
     await testController.click('.view-paper-button');
   }
