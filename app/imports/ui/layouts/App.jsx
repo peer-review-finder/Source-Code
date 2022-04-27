@@ -20,6 +20,7 @@ import Signout from '../pages/Signout';
 import ViewProfile from '../pages/ViewProfile';
 import EditProfile from '../pages/EditProfile';
 import ListReview from '../pages/ListReview';
+import ViewReview from '../pages/ViewReview';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
               <ProtectedRoute path="/addPaper" component={AddPaper}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
+              <ProtectedRoute path="/view_review/:_id" component={ViewReview}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <Route component={NotFound}/>
             </Switch>

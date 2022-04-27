@@ -42,6 +42,12 @@ class ViewPaperPage {
     await this.isDisplayed(testController);
     await testController.expect(Selector('.list-reviews-item').count).gte(1);
   }
+
+  /** Go to the view review page for the first review */
+  async gotoViewPapersPage(testController) {
+    await this.isDisplayed(testController);
+    await testController.click('.view-review-button');
+  }
 }
 
 export const viewPaperPage = new ViewPaperPage();
