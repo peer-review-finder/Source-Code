@@ -36,6 +36,12 @@ class ViewPaperPage {
     const edited_review = await Selector('#review-text').innerText;
     await testController.expect(edited_review).eql('edited test message');
   }
+
+  /** Checks that the review list is displayed. */
+  async hasReviewListing(testController) {
+    await this.isDisplayed(testController);
+    await testController.expect(Selector('.list-reviews-item').count).gte(1);
+  }
 }
 
 export const viewPaperPage = new ViewPaperPage();

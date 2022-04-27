@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Container, Card, Label, Button } from 'semantic-ui-react';
+import { Loader, Container, Card, Label, Button, Header, Table, Message } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
+import ListReviewsItem from '../components/ListReviewsItem';
 
 /** Renders the Page for viewing a single paper. */
 class ViewPaper extends React.Component {
@@ -18,17 +19,50 @@ class ViewPaper extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
-    let addReview = <div />;
-    if (this.props.paper.owner !== Meteor.user().username) {
+    let reviewContent = <div />;
+    if (this.props.paper.owner === Meteor.user().username) {
+      if (this.props.reviews.length > 0) {
+        const pendingRating = this.props.reviews.filter(review => (review.rating === undefined));
+        const alreadyRated = this.props.reviews.filter(review => (review.rating !== undefined));
+        const reviewsPendingFirst = pendingRating.concat(alreadyRated);
+        reviewContent = (
+          <Card.Content>
+            <Header as="h2">Reviews</Header>
+            <Table celled>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Created By</Table.HeaderCell>
+                  <Table.HeaderCell>Date</Table.HeaderCell>
+                  <Table.HeaderCell>Rating</Table.HeaderCell>
+                  <Table.HeaderCell />
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {reviewsPendingFirst.map((review) => <ListReviewsItem key={review._id} review={review} />)}
+              </Table.Body>
+            </Table>
+          </Card.Content>
+        );
+      } else {
+        reviewContent = (
+          <Card.Content>
+            <Header as="h2">Reviews</Header>
+            <Message info>
+              <Message.Header>No reviews yet</Message.Header>
+            </Message>
+          </Card.Content>
+        );
+      }
+    } else {
       const reviews = this.props.reviews.filter(review => (review.owner === Meteor.user().username));
       if (reviews.length === 0) {
-        addReview = (
+        reviewContent = (
           <Card.Content>
             <AddReview paper={this.props.paper} reviews={this.props.reviews}/>
           </Card.Content>
         );
       } else {
-        addReview = (
+        reviewContent = (
           <Card.Content>
             <EditReview paper={this.props.paper} reviews={this.props.reviews}/>
           </Card.Content>
@@ -52,7 +86,7 @@ class ViewPaper extends React.Component {
           <Card.Content extra>
             <Button color='blue' as='a' href={this.props.paper.link}>Download Full Paper</Button>
           </Card.Content>
-          {addReview}
+          {reviewContent}
         </Card>
       </Container>
     );
