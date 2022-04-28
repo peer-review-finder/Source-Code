@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListPaper from '../pages/ListPaper';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
+import ListPaperAdmin from '../pages/ListPaperAdmin';
 import AddPaper from '../pages/AddPaper';
 import EditStuff from '../pages/EditStuff';
 import EditPaper from '../pages/EditPaper';
@@ -44,7 +44,7 @@ class App extends React.Component {
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
               <ProtectedRoute path="/view_review/:_id" component={ViewReview}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <AdminProtectedRoute path="/admin" component={ListPaperAdmin}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

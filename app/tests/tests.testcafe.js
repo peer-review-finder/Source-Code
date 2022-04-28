@@ -9,6 +9,7 @@ import { listPapersPage } from './listPapers.page';
 import { viewPaperPage } from './viewPaper.page';
 import { listReviewPage } from './listReview.page';
 import { viewReviewPage } from './viewReview.page';
+import { listPapersAdminPage } from './listPapersAdmin.page';
 
 /* global fixture:false, test:false */
 
@@ -17,6 +18,10 @@ const credentials = { username: 'john@foo.com', password: 'changeme' };
 /** Credentials for a new user. */
 const date = Date.now();
 const new_cred = { username: `${date}@foo.com`, password: 'changeme' };
+/** Credentials for a admin. */
+
+const admin_Credentials = { username: 'admin@foo.com', password: 'changeme' };
+
 /** Credentials for a new user's profile. */
 const new_user = { name: 'No name provided', image: '/images/default_user.png', interest: '' };
 /** Credentials for editing a user's profile. */
@@ -68,6 +73,14 @@ test('Test that list papers page works', async (testController) => {
   await navBar.isLoggedIn(testController, credentials.username);
   await navBar.gotoListPapersPage(testController);
   await listPapersPage.hasListing(testController);
+});
+
+test('Test that list papers admin page works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, admin_Credentials.username, admin_Credentials.password);
+  await navBar.isLoggedIn(testController, admin_Credentials.username);
+  await navBar.gotoListPapersAdminPage(testController);
+  await listPapersAdminPage.hasListing(testController);
 });
 
 test('Test that view paper page works', async (testController) => {
