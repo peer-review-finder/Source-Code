@@ -19,6 +19,11 @@
   color: white;
 }
 
+#add-paper-submit, #edit-paper-submit {
+  background-color: #2185d0;
+  color: white;
+}
+
 #footer_bottom {
   background-color: #21BA45;
   color: white;

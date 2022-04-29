@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Table, Loader, Icon, Button, CardGroup } from 'semantic-ui-react';
+import { Container, Header, Table, Loader, CardGroup } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -26,8 +26,7 @@ class ListReview extends React.Component {
       <Container style={menuStyle} id='list-reviews-page'>
         <Header as="h2" textAlign="center">Your Reviews and Papers</Header>
         <br/>
-        <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>
-        <CardGroup itemsPerRow={4}>
+        <CardGroup itemsPerRow={2}>
           {myPapers.map((paper) => <DisplayPaper key={paper._id} paper={paper} />)}
         </CardGroup>
         <br/><br/>

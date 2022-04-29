@@ -40,7 +40,7 @@ class EditPaper extends React.Component {
             <LongTextField name='abstract' />
             <AutoField name='area' />
             <TextField name='link' />
-            <SubmitField color='green' value='Update' />
+            <SubmitField id='edit-paper-submit' value='Update' />
             <Button color='red' as={NavLink} exact to="/listPaper">Cancel</Button>
             <ErrorsField/>
             <HiddenField name='owner' />

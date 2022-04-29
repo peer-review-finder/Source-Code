@@ -63,7 +63,7 @@ class AddPaper extends React.Component {
             <Form.Group widths='equal'>
               <TextField name='link' placeholder='Link to the paper' label='Link of Paper'/>
             </Form.Group>
-            <SubmitField color='green' value='Upload'/>
+            <SubmitField id='add-paper-submit' value='Upload'/>
             <Button color='red' as={NavLink} exact to="/listPaper">Cancel</Button>
             <ErrorsField/>
             <HiddenField name='owner' value={Meteor.user().username}/>

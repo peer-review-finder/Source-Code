@@ -9,7 +9,6 @@ import { Papers } from '../../api/paper/Paper';
 class DisplayPaper extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -19,6 +18,11 @@ class DisplayPaper extends React.Component {
 
   render() {
     const currentUser = Meteor.user() ? Meteor.user().username : '';
+    const button_style = { marginBottom: '5px' };
+    let abstract = this.props.paper.abstract;
+    if (abstract.length > 200) {
+      abstract = `${abstract.substring(0, 200)}...`;
+    }
     return (
       <Card color='green'>
         <Card.Content>
@@ -31,21 +35,18 @@ class DisplayPaper extends React.Component {
               (tag, index) => <Label key={index} size='tiny' basic>{tag}</Label>)}<br/><br/> Abstract
             </Header>
             <div className="abstract">
-              {this.props.paper.abstract}
+              {abstract}
             </div>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Header as='h5'><a href={this.props.paper.link} target="_blank" rel="noopener noreferrer">Link to Paper</a></Header>
-        </Card.Content>
-        <Card.Content extra>
           <Link to={`/view_paper/${this.props.paper._id}`}>
-            <Button fluid className="view-paper-button" basic size='tiny' color='green'>View Paper</Button>
+            <Button style={button_style} fluid className="view-paper-button" size='large' color='blue'>View Paper</Button>
           </Link>
           { currentUser === this.props.paper.owner ? (
             <Card.Content fluid>
-              <Link fluid to={`/editPaper/${this.props.paper._id}`}><Button basic size='tiny' color='green'>Edit Paper </Button></Link>
-              <Button id="delete-paper-button" basic size='tiny' color='red' onClick={() => this.handleClick(this.props.paper._id)}>Delete Paper</Button>
+              <Link to={`/editPaper/${this.props.paper._id}`}><Button style={button_style} fluid size='large' color='green' className="edit-paper-button">Edit Paper </Button></Link>
+              <Button style={button_style} fluid className="delete-paper-button" size='large' color='red' onClick={() => this.handleClick(this.props.paper._id)}>Delete Paper</Button>
             </Card.Content>
           ) : '' }
         </Card.Content>

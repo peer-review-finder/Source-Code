@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Header } from 'semantic-ui-react';
+import { Menu, Dropdown, Header, Icon } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
@@ -16,8 +16,9 @@ class NavBar extends React.Component {
           <Header inverted as='h1'>Peer Review Finder</Header>
         </Menu.Item>
         {this.props.currentUser ? (
-          [<Menu.Item id="navbar-list-papers" as={NavLink} activeClassName="active" exact to="/listPaper" key='listPaper'>Paper to Review</Menu.Item>,
-            <Menu.Item id="navbar-review-papers" as={NavLink} exact to="/listReview" key='listReview'>My Paper and Review</Menu.Item>]
+          [<Menu.Item id="navbar-list-papers" as={NavLink} activeClassName="active" exact to="/listPaper" key='listPaper'>View Papers</Menu.Item>,
+            <Menu.Item id="navbar-review-papers" as={NavLink} exact to="/addPaper" key='addPaper'><Icon name='plus'/> Upload Paper</Menu.Item>,
+            <Menu.Item id="navbar-review-papers" as={NavLink} exact to="/listReview" key='listReview'>My Papers and Reviews</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item id="navbar-list-papers-admin" as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>

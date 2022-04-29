@@ -47,10 +47,9 @@ class ListPaper extends React.Component {
           <Header as="h1" textAlign="center">Paper Looking for Reviews</Header>
           <Input fluid icon="search" placeholder="Search paper by area of study separated by space or comma..." onChange={this.onChange}/>
           <br/>
-          <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button>
         </Container>
         <br/>
-        <CardGroup itemsPerRow={4}>
+        <CardGroup itemsPerRow={2}>
           {otherPapers.map((papers) => <DisplayPaper key={papers._id} paper={papers} />)}
         </CardGroup>
         <br/><br/><br/><br/>
