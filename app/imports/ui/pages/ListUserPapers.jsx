@@ -1,15 +1,15 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Table, Loader, CardGroup } from 'semantic-ui-react';
+import { Container, Header, Loader, CardGroup, Grid, Icon, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Reviews } from '../../api/review/Review';
-import ReviewItem from '../components/ReviewItem';
 import { Papers } from '../../api/paper/Paper';
 import DisplayPaper from '../components/DisplayPaper';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListReview extends React.Component {
+class ListUserPapers extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -21,25 +21,36 @@ class ListReview extends React.Component {
     const menuStyle = { marginTop: '25px' };
     const currentUser = Meteor.user().username;
     const myPapers = this.props.paper.filter(papers => (papers.owner) === currentUser);
+    if (myPapers.length === 0) {
+      return (
+        <Container style={menuStyle} id='list-reviews-page'>
+          <Header as="h2" textAlign="center">Your Papers</Header>
+          <br/>
+          <Grid centered columns={3}>
+            <Grid.Column>
+              <Header as='h2' icon>
+                <Icon name='file alternate outline'/>
+                No Papers Found
+                <Header.Subheader>
+                  You currently have no papers uploaded so far. Please click on the button below to upload a paper.
+                </Header.Subheader>
+              </Header>
+              <Link to='/addPaper'>
+                <Button fluid id='list-user-reviews-btn'>Upload Paper</Button>
+              </Link>
+            </Grid.Column>
+          </Grid>
+          <br/><br/>
+        </Container>
+      );
+    }
     return (
       <Container style={menuStyle} id='list-reviews-page'>
-        <Header as="h2" textAlign="center">Your Reviews and Papers</Header>
+        <Header as="h2" textAlign="center">Your Papers</Header>
         <br/>
         <CardGroup itemsPerRow={2}>
           {myPapers.map((paper) => <DisplayPaper key={paper._id} paper={paper} />)}
         </CardGroup>
-        <br/><br/>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Title</Table.HeaderCell>
-              <Table.HeaderCell>Your submitted reviews</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {this.props.review.map((reviews) => <ReviewItem key={reviews.paperId} title={Papers.collection.findOne(reviews.paperId).title} message={reviews.message}/>)}
-          </Table.Body>
-        </Table>
         <br/><br/>
       </Container>
     );
@@ -47,7 +58,7 @@ class ListReview extends React.Component {
 }
 
 // Require a document to be passed to this component.
-ListReview.propTypes = {
+ListUserPapers.propTypes = {
   review: PropTypes.arrayOf(PropTypes.shape({
     message: PropTypes.string,
     paperId: PropTypes.string,
@@ -75,4 +86,4 @@ export default withTracker(() => {
     paper,
     ready,
   };
-})(ListReview);
+})(ListUserPapers);

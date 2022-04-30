@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
+import swal from 'sweetalert';
 import { Papers } from '../../api/paper/Paper';
 
 class DisplayPaper extends React.Component {
@@ -13,7 +14,32 @@ class DisplayPaper extends React.Component {
   }
 
   handleClick(id) {
-    Papers.collection.remove(id);
+    swal({
+      title: 'Delete this paper?',
+      text: 'Once deleted, you will not be able to recover this paper!',
+      icon: 'warning',
+      buttons: [{
+        text: 'No',
+        value: false,
+        visible: true,
+        className: 'delete-paper-no',
+        closeModal: true,
+      }, {
+        text: 'Yes',
+        value: true,
+        visible: true,
+        className: 'delete-paper-yes',
+        closeModal: true,
+      }],
+    }).then((result) => {
+      console.log(this.props.paper);
+      if (result) {
+        Papers.collection.remove(id);
+        swal('Paper has been deleted!', '', 'success');
+      } else {
+        swal('Paper has not been deleted.', '', 'info');
+      }
+    });
   }
 
   render() {

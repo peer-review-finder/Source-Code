@@ -45,14 +45,14 @@ class AddPaper extends React.Component {
   renderPage() {
     const menuStyle = { marginTop: '25px' };
     if (this.state.redirectToReferer) {
-      return <Redirect to='/listReview'/>;
+      return <Redirect to='/listUserPapers'/>;
     }
     return (
       <Container style={menuStyle} textAlign='center'>
-        <Header as='h1'>Uploading Paper</Header>
+        <Header as='h1'>Upload Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
-            <TextField name='title' placeholder='AI' label='Paper Title'/>
+            <TextField name='title' placeholder='Paper Title' label='Paper Title'/>
             <Form.Group widths='equal'>
               <AutoField name='authors' label='Authors'/>
             </Form.Group>
@@ -61,7 +61,7 @@ class AddPaper extends React.Component {
               <AutoField name='area' label='Area of Study'/>
             </Form.Group>
             <Form.Group widths='equal'>
-              <TextField name='link' placeholder='Link to the paper' label='Link of Paper'/>
+              <TextField name='link' placeholder='Link to Paper' label='Link of Paper'/>
             </Form.Group>
             <SubmitField id='add-paper-submit' value='Upload'/>
             <Button color='red' as={NavLink} exact to="/listPaper">Cancel</Button>

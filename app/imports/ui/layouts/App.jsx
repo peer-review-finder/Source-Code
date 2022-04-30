@@ -19,8 +19,9 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ViewProfile from '../pages/ViewProfile';
 import EditProfile from '../pages/EditProfile';
-import ListReview from '../pages/ListReview';
 import ViewReview from '../pages/ViewReview';
+import ListUserReviews from '../pages/ListUserReviews';
+import ListUserPapers from '../pages/ListUserPapers';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -38,7 +39,8 @@ class App extends React.Component {
               <ProtectedRoute path="/profile" component={ViewProfile}/>
               <ProtectedRoute path="/edit_profile" component={EditProfile}/>
               <ProtectedRoute path="/listPaper" component={ListPaper}/>
-              <ProtectedRoute path="/listReview" component={ListReview}/>
+              <ProtectedRoute path="/listUserPapers" component={ListUserPapers}/>
+              <ProtectedRoute path="/listUserReviews" component={ListUserReviews}/>
               <ProtectedRoute path="/editPaper/:_id" component={EditPaper}/>
               <ProtectedRoute path="/addPaper" component={AddPaper}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>

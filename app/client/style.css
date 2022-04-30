@@ -19,7 +19,17 @@
   color: white;
 }
 
-#add-paper-submit, #edit-paper-submit {
+#add-paper-submit, #edit-paper-submit, #list-user-reviews-btn {
+  background-color: #2185d0;
+  color: white;
+}
+
+.delete-paper-no {
+  background-color: #DB2828;
+  color: white;
+}
+
+.delete-paper-yes {
   background-color: #2185d0;
   color: white;
 }
