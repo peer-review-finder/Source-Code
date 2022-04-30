@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Grid, Header, Icon, Loader, Statistic } from 'semantic-ui-react';
+import { Grid, Header, Icon, Loader, Statistic } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
@@ -35,14 +35,14 @@ class Landing extends React.Component {
     const statisticLabel = { fontSize: '2rem', lineHeight: '1.5em' };
     const my_papers = _.filter(this.props.papers, function (paper) { return paper.owner === Meteor.user().username; });
     const other_papers = _.filter(this.props.papers, function (paper) { return paper.owner !== Meteor.user().username; });
-    console.log(other_papers);
+    // console.log(other_papers);
     const getId = _.pluck(my_papers, '_id');
     const getAreas = _.pluck(other_papers, 'area');
-    console.log(getAreas);
+    // console.log(getAreas);
     const count_reviews = this.props.reviews.filter((review) => getId.includes(review.paperId));
     // const matching_interests = Meteor.user().profile.interests.filter(x => getArea.includes(x));
     const matching_interests = _.map(getAreas, (x) => x.filter(r => Meteor.user().profile.interests.includes(r)));
-    console.log(matching_interests);
+    // console.log(matching_interests);
     return (
       <div className='landing-background' id='landing-page' >
         <Header as='h1' textAlign='center' inverted style={{ paddingTop: '30px', fontSize: '50px' }}>{this.greeting()} </Header>

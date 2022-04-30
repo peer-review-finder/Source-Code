@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader, Header, Button, CardGroup, Input, Icon } from 'semantic-ui-react';
+import { Container, Loader, Header, CardGroup, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { _ } from 'meteor/underscore';
 import { Papers } from '../../api/paper/Paper';

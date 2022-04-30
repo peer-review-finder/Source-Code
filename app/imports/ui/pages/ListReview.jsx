@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Table, Loader, CardGroup } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { Reviews } from '../../api/review/Review';
 import ReviewItem from '../components/ReviewItem';
 import { Papers } from '../../api/paper/Paper';

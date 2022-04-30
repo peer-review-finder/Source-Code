@@ -44,7 +44,7 @@ class DisplayPaper extends React.Component {
             <Button style={button_style} fluid className="view-paper-button" size='large' color='blue'>View Paper</Button>
           </Link>
           { currentUser === this.props.paper.owner ? (
-            <Card.Content fluid>
+            <Card.Content>
               <Link to={`/editPaper/${this.props.paper._id}`}><Button style={button_style} fluid size='large' color='green' className="edit-paper-button">Edit Paper </Button></Link>
               <Button style={button_style} fluid className="delete-paper-button" size='large' color='red' onClick={() => this.handleClick(this.props.paper._id)}>Delete Paper</Button>
             </Card.Content>
