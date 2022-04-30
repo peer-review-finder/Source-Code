@@ -40,13 +40,13 @@ class ListPaperAdmin extends React.Component {
     return (
       <Container style={menuStyle} id="list-papers-admin-page">
         <Container fluid>
-          <Header as="h1" textAlign="center">Paper Uploaded</Header>
+          <Header as="h1" textAlign="center">All Papers Uploaded</Header>
           <Input fluid icon="search" placeholder="Search paper by area of study separated by space or comma..." onChange={this.onChange}/>
           <br/>
           {/* <Button floated="right" icon as={NavLink} exact to="/addPaper" color='green'><Icon name='plus'/>Upload Paper</Button> */}
         </Container>
         <br/>
-        <CardGroup itemsPerRow={4}>
+        <CardGroup itemsPerRow={2}>
           {otherPapers.map((papers) => <DisplayPaperAdmin key={papers._id} paper={papers} />)}
         </CardGroup>
         <br/><br/><br/><br/>

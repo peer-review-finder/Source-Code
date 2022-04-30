@@ -21,8 +21,8 @@ class ListUserReviews extends React.Component {
     const menuStyle = { marginTop: '25px' };
     if (this.props.review.length === 0) {
       return (
-        <Container style={menuStyle} id='list-reviews-page'>
-          <Header as="h2" textAlign="center">Your Reviews</Header>
+        <Container style={menuStyle} id='list-user-reviews-page'>
+          <Header as="h1" textAlign="center">Your Reviews</Header>
           <br/>
           <Grid centered columns={3}>
             <Grid.Column>
@@ -43,8 +43,8 @@ class ListUserReviews extends React.Component {
       );
     }
     return (
-      <Container style={menuStyle} id='list-reviews-page'>
-        <Header as="h2" textAlign="center">Your Reviews</Header>
+      <Container style={menuStyle} id='list-user-reviews-page'>
+        <Header as="h1" textAlign="center">Your Reviews</Header>
         <br/>
         <Table celled>
           <Table.Header>

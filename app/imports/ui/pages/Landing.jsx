@@ -1,7 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Header, Icon, Loader, Statistic } from 'semantic-ui-react';
+import { Grid, Header, Icon, Loader, Statistic, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import { Papers } from '../../api/paper/Paper';
@@ -61,6 +62,20 @@ class Landing extends React.Component {
             <Statistic.Label style={statisticLabel}>Papers</Statistic.Label>
           </Statistic>
         </Statistic.Group>
+        <br/><br/>
+        <Grid container centered columns={3} alignItems='center'>
+          <Grid.Column>
+            <Link to='/listUserPapers'>
+              <Button id='my-papers-landing' size='massive' fluid>My Papers</Button>
+            </Link>
+          </Grid.Column>
+          <Grid.Column></Grid.Column>
+          <Grid.Column>
+            <Link to='/listUserReviews'>
+              <Button id='my-reviews-landing' size='massive' fluid>My Reviews</Button>
+            </Link>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

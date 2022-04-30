@@ -24,6 +24,12 @@
   color: white;
 }
 
+#my-papers-landing, #my-reviews-landing {
+  background-color: #2185d0;
+  color: white;
+  height: 100px;
+}
+
 .delete-paper-no {
   background-color: #DB2828;
   color: white;

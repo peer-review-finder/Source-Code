@@ -23,8 +23,8 @@ class ListUserPapers extends React.Component {
     const myPapers = this.props.paper.filter(papers => (papers.owner) === currentUser);
     if (myPapers.length === 0) {
       return (
-        <Container style={menuStyle} id='list-reviews-page'>
-          <Header as="h2" textAlign="center">Your Papers</Header>
+        <Container style={menuStyle} id='list-user-papers-page'>
+          <Header as="h1" textAlign="center">Your Papers</Header>
           <br/>
           <Grid centered columns={3}>
             <Grid.Column>
@@ -45,8 +45,8 @@ class ListUserPapers extends React.Component {
       );
     }
     return (
-      <Container style={menuStyle} id='list-reviews-page'>
-        <Header as="h2" textAlign="center">Your Papers</Header>
+      <Container style={menuStyle} id='list-user-papers-page'>
+        <Header as="h1" textAlign="center">Your Papers</Header>
         <br/>
         <CardGroup itemsPerRow={2}>
           {myPapers.map((paper) => <DisplayPaper key={paper._id} paper={paper} />)}
