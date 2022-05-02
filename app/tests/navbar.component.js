@@ -55,12 +55,6 @@ class NavBar {
     await testController.expect(Selector('#navbar-current-user').exists).ok();
     await testController.click('#navbar-list-papers-admin');
   }
-
-  /** Check that someone is logged in, then go to list review/paper page */
-  async gotoListReviewPage(testController) {
-    await testController.expect(Selector('#navbar-current-user').exists).ok();
-    await testController.click('#navbar-review-papers');
-  }
 }
 
 export const navBar = new NavBar();

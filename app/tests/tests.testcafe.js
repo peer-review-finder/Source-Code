@@ -126,8 +126,6 @@ test('Test that list user\'s reviews works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
-  await navBar.gotoListReviewPage(testController);
+  await landingPage.gotoListReviewPage(testController);
   await listReviewPage.isDisplayed(testController);
-  await listReviewPage.hasListing(testController);
-  await listReviewPage.deletePaper(testController);
 });

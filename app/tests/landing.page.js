@@ -11,6 +11,11 @@ class LandingPage {
     // This is first test to be run. Wait 60 seconds to avoid timeouts with GitHub Actions.
     await testController.wait(60000).expect(this.pageSelector.exists).ok();
   }
+
+  /** Check that someone is logged in, then go to list review/paper page */
+  async gotoListReviewPage(testController) {
+    await testController.click('#my-reviews-landing');
+  }
 }
 
 export const landingPage = new LandingPage();
