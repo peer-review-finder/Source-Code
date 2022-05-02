@@ -10,6 +10,7 @@ import { viewPaperPage } from './viewPaper.page';
 import { listReviewPage } from './listReview.page';
 import { viewReviewPage } from './viewReview.page';
 import { listPapersAdminPage } from './listPapersAdmin.page';
+import { listMyPaperPage } from './listMyPaper.page';
 
 /* global fixture:false, test:false */
 
@@ -102,21 +103,12 @@ test('Test that add review and edit review works', async (testController) => {
   await viewPaperPage.editReview(testController);
 });
 
-test('Test that list paper\'s reviews works', async (testController) => {
-  await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.isLoggedIn(testController, credentials.username);
-  await navBar.gotoListReviewPage(testController);
-  await listReviewPage.gotoViewPaperPage(testController);
-  await viewPaperPage.hasReviewListing(testController);
-});
-
 test('Test that view review and add rating works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
-  await navBar.gotoListReviewPage(testController);
-  await listReviewPage.gotoViewPaperPage(testController);
+  await landingPage.gotoMyPapersPage(testController);
+  await listMyPaperPage.gotoViewPaperPage(testController);
   await viewPaperPage.gotoViewPapersPage(testController);
   await viewReviewPage.isDisplayed(testController);
   await viewReviewPage.rateReview(testController);
