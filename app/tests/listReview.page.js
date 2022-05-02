@@ -23,11 +23,11 @@ class ListReviewPage {
     await testController.click('.view-paper-button');
   }
 
-  async deletePaper(testController) {
-    await this.isDisplayed(testController);
-    await testController.click('.delete-paper-button');
-    await testController.expect(Selector('.ui .card').count).lte(1);
-  }
+  // async deletePaper(testController) {
+  //   await this.isDisplayed(testController);
+  //   await testController.click('.delete-paper-button');
+  //   await testController.expect(Selector('.ui .card').count).lte(1);
+  // }
 }
 
 export const listReviewPage = new ListReviewPage();

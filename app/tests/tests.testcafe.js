@@ -129,5 +129,4 @@ test('Test that list user\'s reviews works', async (testController) => {
   await navBar.gotoListReviewPage(testController);
   await listReviewPage.isDisplayed(testController);
   await listReviewPage.hasListing(testController);
-  await listReviewPage.deletePaper(testController);
 });
