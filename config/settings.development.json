@@ -5,6 +5,12 @@
     { "email": "abc@foo.com", "password": "changeme" }
   ],
 
+  "defaultTokens": [
+    { "owner": "admin@foo.com", "quantity": 10 },
+    { "owner": "john@foo.com", "quantity": 10 },
+    { "owner": "abc@foo.com", "quantity": 10 }
+  ],
+
   "defaultData": [
     { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
     { "name": "Bicycle", "quantity": 2, "owner": "abc@foo.com", "condition": "poor" },

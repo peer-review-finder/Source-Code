@@ -3,6 +3,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
+import { Tokens } from '../../api/token/Tokens';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -26,6 +27,14 @@ Meteor.publish(Reviews.userPublicationName, function () {
   return this.ready();
 });
 
+Meteor.publish(Tokens.userPublicationName, function () {
+  if (this.userId) {
+    // need to give users read/write access even if they are not the owner of the token document
+    return Tokens.collection.find();
+  }
+  return this.ready();
+});
+
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.
 Meteor.publish(Stuffs.adminPublicationName, function () {
@@ -45,6 +54,13 @@ Meteor.publish(Papers.adminPublicationName, function () {
 Meteor.publish(Reviews.adminPublicationName, function () {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Reviews.collection.find();
+  }
+  return this.ready();
+});
+
+Meteor.publish(Tokens.adminPublicationName, function () {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Tokens.collection.find();
   }
   return this.ready();
 });
