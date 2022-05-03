@@ -3,7 +3,8 @@
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" },
     { "email": "abc@foo.com", "password": "changeme" },
-    { "email": "xyz@foo.com", "password": "changeme" }
+    { "email": "xyz@foo.com", "password": "changeme" },
+    { "email": "123@foo.com", "password": "changeme" }
   ],
 
   "defaultTokens": [
@@ -264,6 +265,38 @@
       "area": ["Numerical linear algebra", "kernel compositions", "performance prediction", "machine learning"],
       "link": "https://henricasanova.github.io/files/papers/hurault_spe2015.pdf",
       "owner": "xyz@foo.com"
-    }
+    },
+    {
+      "title": "In-Memory Distance Threshold Similarity Searches on Moving Object Trajectories",
+      "authors": ["Michael Gowanlock", "Henri Casanova"],
+      "abstract": "The need to query spatiotemporal databases that store trajectories of moving objects arises in a broad range of application domains. In this work, we focus on in-memory distance threshold searches which return all moving objects that are found within a given distance d of a fixed or moving object over a time interval. We propose algorithms to solve suchsearches efficiently, using an R-tree index to store trajectory data and two methods for filtering out trajectory segments so as to reduce segment processing time. We evaluate our algorithms on both real-world and synthetic in-memory trajectory datasets. Choosing an efficient trajectory splitting strategy to reduce index resolution increases the efficiency of distance threshold searches. Moreover, we demonstrate that distance threshold searches can be performed in parallel using a multithreaded implementation and we observe that high parallel efficiency (72.2%-85.7%) can be obtained. Interestingly, the traditional notion of considering good trajectory splits by minimizing the volume of hyperrectangular minimum bounding boxes (MBBs) so as to reduce index overlap is not well-suited to improve the performance of in-memory distance threshold searches.",
+      "area": ["query optimization", "query parallelization", "spatiotemporal databases"],
+      "link": "https://henricasanova.github.io/files/papers/gowanlock_ijoas2014.pdf",
+      "owner": "123@foo.com"
+    },
+    {
+      "title": "Distance Threshold Similarity Searches on Spatiotemporal Trajectories using GPGPU",
+      "authors": ["Michael Gowanlock", "Henri Casanova"],
+      "abstract": "The processing of moving object trajectories arises in many application domains. We focus on a trajectory similarity search, the distance threshold search, which finds all trajectories within a given distance of a query trajectory over a time interval. A multithreaded CPU implementation that makes use of an in-memory R-tree index can achieve high parallel efficiency. We propose a GPGPU implementation that avoids index-trees altogether and instead features a GPU-friendly indexing scheme. We show that our GPU implementation compares well to the CPU implementation. One interesting question is that of creating efficient query batches (so as to reduce both memory pressure and computation cost on the GPU). We design algorithms for creating such batches, and we find that using fixed-size batches is sufficient in practice. We develop an empirical response time model that can be used to pick a good batch size.",
+      "area": ["distance threshold queries", "GPGPU"],
+      "link": "https://henricasanova.github.io/files/papers/gowanlock_hipc2014.pdf",
+      "owner": "123@foo.com"
+    },
+    {
+      "title": "Swap-and-randomize: A Method for Building Low-latency HPC Interconnects",
+      "authors": ["Ikki Fujiwara", "Henri Casanova", "Michihiro Koibuchi", "Hiroki Matsutani"],
+      "abstract": "Random network topologies have been proposed to create low-diameter, low-latency interconnection networks in large-scale computing systems. However, these topologies are difficult to deploy in practice, especially when re-designing existing systems, because they lead to increased total cable length and cable packaging complexity. In this work we propose a new method for creating random topologies without increasing cable length: randomly swap link endpoints in a non-random topology that is already deployed across several cabinets in a machine room. We quantitatively evaluate topologies created in this manner using both graph analysis and cycle-accurate network simulation, including comparisons with non-random topologies and previously-proposed random topologies.",
+      "area": ["Network topologies", "cabinet layout", "interconnection networks"],
+      "link": "https://henricasanova.github.io/files/papers/fujiwara_tpdc2014.pdf",
+      "owner": "123@foo.com"
+    },
+    {
+      "title": "Versatile, Scalable, and Accurate Simulation of Distributed Applications and Platforms",
+      "authors": ["Arnaud Giersch", "Henri Casanova", "Arnaud Legrand", "Martin Quinson"],
+      "abstract": "The study of parallel and distributed applications and platforms, whether in the cluster, grid, peer-to-peer, volunteer, or cloud computing domain, often mandates empirical evaluation of proposed algorithmic and system solutions via simulation. Unlike direct experimentation via an application deployment on a real-world testbed, simulation enables fully repeatable and configurable experiments for arbitrary hypothetical scenarios. Two key concerns are accuracy (so that simulation results are scientifically sound) and scalability (so that simulation experiments can be fast and memory-efficient). While the scalability of a simulator is easily measured, the accuracy of many state-of-the-art simulators is largely unknown because they have not been sufficiently validated. In this work we describe recent accuracy and scalability advances made in the context of the SimGrid simulation framework. A design goal of SimGrid is that it should be versatile, i.e., applicable across all aforementioned domains. We present quantitative results that show that SimGrid compares favorably to state-of-the-art domain-specific simulators in terms of scalability, accuracy, or the trade-off between the two. An important implication is that, contrary to popular wisdom, striving for versatility in a simulator is not an impediment but instead is conducive to improving both accuracy and scalability.",
+      "area": ["Simulation", "validation", "SimGrid"],
+      "link": "https://henricasanova.github.io/files/papers/casanova_jpdc2014.pdf",
+      "owner": "123@foo.com"
+      }
   ]
 }
