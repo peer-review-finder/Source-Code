@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
+import { _ } from 'meteor/underscore';
 import { NavLink } from 'react-router-dom';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
@@ -18,7 +19,7 @@ class ViewReview extends React.Component {
 
   handleClick = () => {
     const rating = this.state.rating;
-    const tok = Tokens.collection.find({ owner: this.props.review.owner });
+    const tok = Tokens.collection.findOne({ owner: this.props.review.owner });
     Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
