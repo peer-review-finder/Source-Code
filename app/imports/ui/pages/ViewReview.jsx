@@ -4,7 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
-import { _ } from 'meteor/underscore';
 import { NavLink } from 'react-router-dom';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';

@@ -10,7 +10,6 @@ import Landing from '../pages/Landing';
 import ListPaper from '../pages/ListPaper';
 import ListPaperAdmin from '../pages/ListPaperAdmin';
 import AddPaper from '../pages/AddPaper';
-import EditStuff from '../pages/EditStuff';
 import EditPaper from '../pages/EditPaper';
 import ViewPaper from '../pages/ViewPaper';
 import NotFound from '../pages/NotFound';
@@ -43,7 +42,6 @@ class App extends React.Component {
               <ProtectedRoute path="/listUserReviews" component={ListUserReviews}/>
               <ProtectedRoute path="/editPaper/:_id" component={EditPaper}/>
               <ProtectedRoute path="/addPaper" component={AddPaper}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/view_paper/:_id" component={ViewPaper}/>
               <ProtectedRoute path="/view_review/:_id" component={ViewReview}/>
               <AdminProtectedRoute path="/admin" component={ListPaperAdmin}/>
