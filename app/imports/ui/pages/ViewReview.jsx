@@ -23,6 +23,7 @@ class ViewReview extends React.Component {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', 'Review rated successfully', 'success').then(function () {
+          const tok = Tokens.collection.find({ owner: this.props.review.owner });
           let addToken;
           if (rating === 5) {
             addToken = 3;
@@ -34,7 +35,7 @@ class ViewReview extends React.Component {
             addToken = 0;
           }
           Tokens.collection.update(
-            { owner: this.props.review.owner },
+            { _id: tok._id },
             { $inc: { quantity: +addToken } },
           );
         });
