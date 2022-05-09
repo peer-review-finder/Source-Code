@@ -4,7 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
-import { _ } from 'meteor/underscore';
 import { NavLink } from 'react-router-dom';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
@@ -19,9 +18,28 @@ class ViewReview extends React.Component {
 
   handleClick = () => {
     const rating = this.state.rating;
-    Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Review rated successfully', 'success')));
+    Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Review rated successfully', 'success').then(function () {
+          let addToken;
+          if (rating === 5) {
+            addToken = 3;
+          } else if (rating === 4) {
+            addToken = 2;
+          } else if (rating === 3) {
+            addToken = 1;
+          } else {
+            addToken = 0;
+          }
+          Tokens.collection.update(
+            { owner: this.props.review.owner },
+            { $inc: { quantity: +addToken } },
+          );
+        });
+      }
+    });
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -32,7 +50,6 @@ class ViewReview extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     const papers = this.props.papers.filter(paper => (paper._id === this.props.review.paperId));
-    const getPeerUser = _.filter(this.props.tokens, (token) => token.owner === this.props.review.owner);
     let rating = (
       <Card.Content extra id="add-rating">
         <Card.Header>Rate This Review</Card.Header>
@@ -45,20 +62,6 @@ class ViewReview extends React.Component {
       </Card.Content>
     );
     if (this.props.review.rating > 0) {
-      const ratedReview = this.props.review.rating;
-      _.map(getPeerUser, function (peer) {
-        let addToken = peer.quantity;
-        if (ratedReview === 5) {
-          addToken += 3;
-        } else if (ratedReview === 4) {
-          addToken += 2;
-        } else if (ratedReview === 3) {
-          addToken += 1;
-        } else {
-          addToken += 0;
-        }
-        return addToken;
-      });
       rating = (
         <Card.Content extra id="view-rating">
           <Card.Header>Rating</Card.Header>
