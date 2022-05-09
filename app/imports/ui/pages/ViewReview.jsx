@@ -4,9 +4,11 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
+import { _ } from 'meteor/underscore';
 import { NavLink } from 'react-router-dom';
 import { Papers } from '../../api/paper/Paper';
 import { Reviews } from '../../api/review/Review';
+import { Tokens } from '../../api/token/Tokens';
 
 /** Renders the Page for viewing a single paper. */
 class ViewReview extends React.Component {
@@ -17,9 +19,29 @@ class ViewReview extends React.Component {
 
   handleClick = () => {
     const rating = this.state.rating;
-    Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Review rated successfully', 'success')));
+    const tok = Tokens.collection.findOne({ owner: this.props.review.owner });
+    Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Review rated successfully', 'success').then(function () {
+          let addToken;
+          if (rating === 5) {
+            addToken = 3;
+          } else if (rating === 4) {
+            addToken = 2;
+          } else if (rating === 3) {
+            addToken = 1;
+          } else {
+            addToken = 0;
+          }
+          Tokens.collection.update(
+            { _id: tok._id },
+            { $inc: { quantity: +addToken } },
+          );
+        });
+      }
+    });
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -84,6 +106,7 @@ ViewReview.propTypes = {
     _id: PropTypes.string,
   }).isRequired,
   papers: PropTypes.array.isRequired,
+  tokens: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -92,16 +115,19 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Paper and Review documents.
-  const subscription = Meteor.subscribe(Reviews.userPublicationName);
+  const subscription1 = Meteor.subscribe(Reviews.userPublicationName);
   const subscription2 = Meteor.subscribe(Papers.userPublicationName);
+  const subscription3 = Meteor.subscribe(Tokens.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = subscription1.ready() && subscription2.ready() && subscription3.ready();
   // Get the documents
   const review = Reviews.collection.findOne(documentId);
   const papers = Papers.collection.find({}).fetch();
+  const tokens = Tokens.collection.find({}).fetch();
   return {
     review,
     papers,
+    tokens,
     ready,
   };
 })(ViewReview);
