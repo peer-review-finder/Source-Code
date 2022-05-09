@@ -18,12 +18,12 @@ class ViewReview extends React.Component {
 
   handleClick = () => {
     const rating = this.state.rating;
+    const tok = Tokens.collection.find({ owner: this.props.review.owner });
     Reviews.collection.update(this.props.review._id, { $set: { rating } }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', 'Review rated successfully', 'success').then(function () {
-          const tok = Tokens.collection.find({ owner: this.props.review.owner });
           let addToken;
           if (rating === 5) {
             addToken = 3;
