@@ -63,13 +63,13 @@ class Landing extends React.Component {
           </Statistic>
         </Statistic.Group>
         <br/><br/>
-        <Grid container centered columns={3} alignItems='center'>
+        <Grid container centered columns={3}>
           <Grid.Column>
             <Link to='/listUserPapers'>
               <Button id='my-papers-landing' size='massive' fluid>My Papers</Button>
             </Link>
           </Grid.Column>
-          <Grid.Column></Grid.Column>
+          <Grid.Column/>
           <Grid.Column>
             <Link to='/listUserReviews'>
               <Button id='my-reviews-landing' size='massive' fluid>My Reviews</Button>

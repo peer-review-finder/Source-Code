@@ -38,16 +38,6 @@ class AddReview extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
-    // const reviews = this.props.reviews.filter(review => (review.owner === Meteor.user().username));
-    // if (reviews.length > 0) {
-    //   return (
-    //     <Segment id="submitted-review">
-    //       <Header as="h2">Your Submitted Review</Header>
-    //       <p>{reviews[0].message}</p>
-    //       <Button color='green'>Edit Review</Button>
-    //     </Segment>
-    //   );
-    // }
     return (
       <Segment id="add-review-form">
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
