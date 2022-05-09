@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Segment, Form, Loader, Button, Header } from 'semantic-ui-react';
+import { Container, Segment, Form, Loader, Button, Header, Icon } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -12,9 +12,10 @@ import {
   AutoField,
   TextField, HiddenField,
 } from 'uniforms-semantic';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Papers } from '../../api/paper/Paper';
+import { Tokens } from '../../api/token/Tokens';
 
 const bridge = new SimpleSchema2Bridge(Papers.schema);
 
@@ -32,8 +33,14 @@ class AddPaper extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Paper Uploaded successfully', 'success');
-          this.setState({ redirectToReferer: true });
+          swal('Success', 'Paper Uploaded successfully', 'success').then(function () {
+            const token = Tokens.collection.findOne({ owner: Meteor.user().username });
+            Tokens.collection.update(
+              { _id: token._id },
+              { $inc: { quantity: -3 } },
+            );
+            window.location.href = '/#/listUserPapers'; // eslint-disable-line
+          });
         }
       });// .then(function() { <Redirect to='/listPaper'/> });
   }
@@ -44,11 +51,25 @@ class AddPaper extends React.Component {
 
   renderPage() {
     const menuStyle = { marginTop: '25px' };
-    if (this.state.redirectToReferer) {
-      return <Redirect to='/listUserPapers'/>;
+    if (this.props.token.quantity < 3) {
+      return (
+        <Container style={menuStyle} textAlign='center' id='add-paper-page'>
+          <Header as='h2' icon color='red'>
+            <Icon name='warning circle'/>
+            Not Enough Tokens
+            <Header.Subheader>
+              You need 3 tokens to add a paper, you currently have {this.props.token.quantity}<br/>
+              Review papers to earn tokens
+            </Header.Subheader>
+            <Link to='/listPaper'>
+              <Button color='green'>View Papers to Review</Button>
+            </Link>
+          </Header>
+        </Container>
+      );
     }
     return (
-      <Container style={menuStyle} textAlign='center'>
+      <Container style={menuStyle} textAlign='center' id='add-paper-page'>
         <Header as='h1'>Upload Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
@@ -75,13 +96,20 @@ class AddPaper extends React.Component {
 }
 
 AddPaper.propTypes = {
+  token: PropTypes.shape({
+    quantity: PropTypes.number,
+  }),
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Papers.userPublicationName);
-  const ready = subscription.ready();
+  const subscription2 = Meteor.subscribe(Tokens.userPublicationName);
+  const ready = subscription.ready() && subscription2.ready();
+  const currentUser = Meteor.user() ? Meteor.user().username : '';
+  const token = Tokens.collection.findOne({ owner: currentUser });
   return {
+    token,
     ready,
   };
 })(AddPaper);
