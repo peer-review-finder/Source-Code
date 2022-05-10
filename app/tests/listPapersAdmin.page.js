@@ -22,6 +22,14 @@ class ListPapersAdminPage {
     await this.isDisplayed(testController);
     await testController.click('.view-paper-button');
   }
+
+  /** Delete a paper */
+  async deletePaper(testController) {
+    await this.isDisplayed(testController);
+    await testController.click('.delete-paper-button');
+    await testController.click('.swal-button--confirm');
+    await testController.click('.swal-button--confirm');
+  }
 }
 
 export const listPapersAdminPage = new ListPapersAdminPage();

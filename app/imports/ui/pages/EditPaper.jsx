@@ -37,15 +37,15 @@ class EditPaper extends React.Component {
   renderPage() {
     const menuStyle = { marginTop: '25px' };
     return (
-      <Container style={menuStyle} textAlign='center'>
+      <Container style={menuStyle} textAlign='center' id='edit-paper-page'>
         <Header as='h1'>Edit Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
           <Segment>
-            <TextField name='title' />
-            <AutoField name='authors' />
-            <LongTextField name='abstract' />
-            <AutoField name='area' />
-            <TextField name='link' />
+            <TextField name='title' id='edit-paper-title'/>
+            <AutoField name='authors' id='edit-paper-author'/>
+            <LongTextField name='abstract' id='edit-paper-abstract'/>
+            <AutoField name='area' id='edit-paper-area'/>
+            <TextField name='link' id='edit-paper-link'/>
             <SubmitField id='edit-paper-submit' value='Update' />
             <Button color='red' as={NavLink} exact to="/listPaper">Cancel</Button>
             <ErrorsField/>

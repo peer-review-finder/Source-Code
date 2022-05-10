@@ -47,7 +47,7 @@ class ListPaperAdmin extends React.Component {
         </Container>
         <br/>
         <CardGroup itemsPerRow={2}>
-          {otherPapers.map((papers) => <DisplayPaperAdmin key={papers._id} paper={papers} />)}
+          {otherPapers.reverse().map((papers) => <DisplayPaperAdmin key={papers._id} paper={papers} />)}
         </CardGroup>
         <br/><br/><br/><br/>
       </Container>

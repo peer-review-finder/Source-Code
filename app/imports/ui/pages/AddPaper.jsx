@@ -73,19 +73,19 @@ class AddPaper extends React.Component {
         <Header as='h1'>Upload Paper</Header>
         <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
           <Segment>
-            <TextField name='title' placeholder='Paper Title' label='Paper Title'/>
+            <TextField name='title' placeholder='Paper Title' label='Paper Title' id='add-paper-title'/>
             <Form.Group widths='equal'>
-              <AutoField name='authors' label='Authors'/>
+              <AutoField name='authors' label='Authors' id='add-paper-author'/>
             </Form.Group>
-            <LongTextField name='abstract' placeholder='Paper is about' label='Abstract'/>
+            <LongTextField name='abstract' placeholder='Paper is about' label='Abstract' id='add-paper-abstract'/>
             <Form.Group widths='equal'>
-              <AutoField name='area' label='Area of Study'/>
+              <AutoField name='area' label='Area of Study' id='add-paper-aos'/>
             </Form.Group>
             <Form.Group widths='equal'>
-              <TextField name='link' placeholder='Link to Paper' label='Link of Paper'/>
+              <TextField name='link' placeholder='Link to Paper' label='Link of Paper' id='add-paper-link'/>
             </Form.Group>
             <SubmitField id='add-paper-submit' value='Upload'/>
-            <Button color='red' as={NavLink} exact to="/listPaper">Cancel</Button>
+            <Button color='red' as={NavLink} exact to="/listPaper" id='add-paper-cancel'>Cancel</Button>
             <ErrorsField/>
             <HiddenField name='owner' value={Meteor.user().username}/>
           </Segment>

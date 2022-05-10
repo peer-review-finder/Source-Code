@@ -76,7 +76,7 @@ class ListPaper extends React.Component {
     } else {
       content = (
         <CardGroup itemsPerRow={2}>
-          {filteredPapers.map((papers) => <DisplayPaper key={papers._id} paper={papers} />)}
+          {filteredPapers.reverse().map((papers) => <DisplayPaper key={papers._id} paper={papers} />)}
         </CardGroup>
       );
     }

@@ -11,6 +11,8 @@ import { listReviewPage } from './listReview.page';
 import { viewReviewPage } from './viewReview.page';
 import { listPapersAdminPage } from './listPapersAdmin.page';
 import { listMyPaperPage } from './listMyPaper.page';
+import { addpaperPage } from './addPaper.page';
+import { editpaperPage } from './editPaper.page';
 
 /* global fixture:false, test:false */
 
@@ -28,6 +30,9 @@ const new_user = { name: 'No name provided', image: '/images/default_user.png', 
 /** Credentials for editing a user's profile. */
 const edit_user = { name: 'John Foo', image: 'https://avatars.githubusercontent.com/u/46693824?v=4',
   interest: 'HCI' };
+
+/** Credentials for a new paper */
+const new_paper = { title: 'Investigating Parallel Computing', author: 'John Foo', abstract: 'This is a paper about parallel computing.', aos: 'Parallel Computing', link: 'https://en.wikipedia.org/wiki/Parallel_computing' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -72,6 +77,38 @@ test('Test that list papers page works', async (testController) => {
   await navBar.isLoggedIn(testController, credentials.username);
   await landingPage.gotoListPapersPage(testController);
   await listPapersPage.hasListing(testController);
+});
+
+test('Test that add paper page works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, new_cred.username, new_cred.password);
+  await navBar.isLoggedIn(testController, new_cred.username);
+  await navBar.gotoAddPaperPage(testController);
+  await addpaperPage.uploadPaper(testController, new_paper.title, new_paper.author, new_paper.abstract, new_paper.aos, new_paper.link);
+  await listMyPaperPage.isDisplayed(testController);
+  await listMyPaperPage.hasListing(testController);
+});
+
+test('Test that edit paper page works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, new_cred.username, new_cred.password);
+  await navBar.isLoggedIn(testController, new_cred.username);
+  await landingPage.gotoMyPapersPage(testController);
+  await listMyPaperPage.gotoEditPaper(testController);
+  await editpaperPage.editPaper(testController);
+});
+
+test('Test that admin delete paper works', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, admin_Credentials.username, admin_Credentials.password);
+  await navBar.isLoggedIn(testController, admin_Credentials.username);
+  await navBar.gotoListPapersAdminPage(testController);
+  await listPapersAdminPage.deletePaper(testController);
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, new_cred.username, new_cred.password);
+  await navBar.isLoggedIn(testController, new_cred.username);
+  await landingPage.gotoMyPapersPage(testController);
+  await listMyPaperPage.hasNoListing(testController);
 });
 
 test('Test that list papers admin page works', async (testController) => {

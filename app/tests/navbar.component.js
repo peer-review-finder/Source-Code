@@ -49,6 +49,12 @@ class NavBar {
     await testController.expect(Selector('#navbar-current-user').exists).ok();
     await testController.click('#navbar-list-papers-admin');
   }
+
+  /** Check that someone is logged in, then go to add paper page * */
+  async gotoAddPaperPage(testController) {
+    await testController.expect(Selector('#navbar-current-user').exists).ok();
+    await testController.click('#navbar-add-paper');
+  }
 }
 
 export const navBar = new NavBar();
