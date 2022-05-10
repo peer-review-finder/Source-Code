@@ -16,8 +16,7 @@ class NavBar extends React.Component {
           <Header inverted as='h1'>Peer Review Finder</Header>
         </Menu.Item>
         {this.props.currentUser ? (
-          [<Menu.Item id="navbar-list-papers" as={NavLink} activeClassName="active" exact to="/listPaper" key='listPaper'>View Papers</Menu.Item>,
-            <Menu.Item id="navbar-add-paper" as={NavLink} exact to="/addPaper" key='addPaper'><Icon name='plus'/> Upload Paper</Menu.Item>]
+          [<Menu.Item id="navbar-add-paper" as={NavLink} exact to="/addPaper" key='addPaper'><Icon name='plus'/> Upload Paper</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item id="navbar-list-papers-admin" as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>

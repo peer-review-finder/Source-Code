@@ -65,11 +65,15 @@ class Landing extends React.Component {
         <br/><br/>
         <Grid container centered columns={3}>
           <Grid.Column>
+            <Link to='/listPaper'>
+              <Button id='list-papers-landing' size='massive' fluid>View Papers</Button>
+            </Link>
+          </Grid.Column>
+          <Grid.Column>
             <Link to='/listUserPapers'>
               <Button id='my-papers-landing' size='massive' fluid>My Papers</Button>
             </Link>
           </Grid.Column>
-          <Grid.Column/>
           <Grid.Column>
             <Link to='/listUserReviews'>
               <Button id='my-reviews-landing' size='massive' fluid>My Reviews</Button>

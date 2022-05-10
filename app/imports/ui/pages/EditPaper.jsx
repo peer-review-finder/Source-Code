@@ -17,9 +17,15 @@ class EditPaper extends React.Component {
   // On successful submit, insert the data.
   submit(data) {
     const { title, authors, abstract, area, link, _id } = data;
-    Papers.collection.update(_id, { $set: { title, authors, abstract, area, link } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Paper details updated successfully', 'success')));
+    Papers.collection.update(_id, { $set: { title, authors, abstract, area, link } }, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Paper Updated Successfully', 'success').then(function () {
+          window.location.href = '/#/listUserPapers'; // eslint-disable-line
+        });
+      }
+    });
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
