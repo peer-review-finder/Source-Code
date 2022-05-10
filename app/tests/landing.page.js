@@ -21,6 +21,11 @@ class LandingPage {
   async gotoMyPapersPage(testController) {
     await testController.click('#my-papers-landing');
   }
+
+  /** Check that someone is logged in, then go to list papers page */
+  async gotoListPapersPage(testController) {
+    await testController.click('#list-papers-landing');
+  }
 }
 
 export const landingPage = new LandingPage();

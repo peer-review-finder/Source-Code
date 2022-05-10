@@ -48,13 +48,11 @@ test('Test that signup and view profile work', async (testController) => {
   await navBar.gotoSignupPage(testController);
   await signupPage.signupUser(testController, new_cred.username, new_cred.password);
   await navBar.isLoggedIn(testController, new_cred.username);
-  // add test to click on view profile page and check what is displayed
   await navBar.viewProfile(testController);
   await viewprofilePage.isDisplayed(testController);
   await viewprofilePage.checkProfile(testController, new_user.name, new_user.image, new_user.interest);
 });
 
-// add test for view and edit profile
 test('Test that view and edit profile work', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, new_cred.username, new_cred.password);
@@ -72,7 +70,7 @@ test('Test that list papers page works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
-  await navBar.gotoListPapersPage(testController);
+  await landingPage.gotoListPapersPage(testController);
   await listPapersPage.hasListing(testController);
 });
 
@@ -88,7 +86,7 @@ test('Test that view paper page works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
-  await navBar.gotoListPapersPage(testController);
+  await landingPage.gotoListPapersPage(testController);
   await listPapersPage.gotoViewPaperPage(testController);
   await viewPaperPage.isDisplayed(testController);
 });
@@ -97,7 +95,7 @@ test('Test that add review and edit review works', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, new_cred.username, new_cred.password);
   await navBar.isLoggedIn(testController, new_cred.username);
-  await navBar.gotoListPapersPage(testController);
+  await landingPage.gotoListPapersPage(testController);
   await listPapersPage.gotoViewPaperPage(testController);
   await viewPaperPage.addReview(testController);
   await viewPaperPage.editReview(testController);
